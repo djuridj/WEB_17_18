@@ -1,2 +1,2 @@
-// username | password | firstname | lastname | telephone | email | regdate | role
+username | password | firstname | lastname | telephone | email
 asdf|asasd|adf|asdf|asdf|asf|

@@ -6,7 +6,7 @@
     
 <display-name>WEB_17_18</display-name>
   <welcome-file-list>
-    <welcome-file>Registration.jsp</welcome-file>
+    <welcome-file>Index.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
     <description></description>
@@ -14,8 +14,18 @@
     <servlet-name>Registration</servlet-name>
     <servlet-class>servlets.Registration</servlet-class>
   </servlet>
+  <servlet>
+    <description></description>
+    <display-name>Login</display-name>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>servlets.Login</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Registration</servlet-name>
     <url-pattern>/Registration</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
   </servlet-mapping>
   </web-app>
