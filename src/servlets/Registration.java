@@ -7,6 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormatter;
+
+import beans.Role;
 import beans.User;
 
 public class Registration extends HttpServlet {
@@ -34,12 +42,14 @@ public class Registration extends HttpServlet {
 		String lastname = request.getParameter("lastname");
 		String telephone = request.getParameter("telephone");
 		String email = request.getParameter("email");
-		//String regDate = (String) request.getParameter("regDate");
-		//String role =(String) request.getParameter("role");
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		Date today = Calendar.getInstance().getTime();        
+		String regDate = df.format(today);
+		String role = Role.User.name();
 	
 		Serialization s = new Serialization();
 		
-		User u = new User(username, password, firstname, lastname, telephone, email);
+		User u = new User(username, password, firstname, lastname, telephone, email, regDate, role);
 		try {
 			s.addUser(u, path);
 		} catch (IOException e) {

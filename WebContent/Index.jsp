@@ -7,9 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<a href="notlogedIndex.jsp">SUBFORUMS</a>
+
 	<h2>Login</h2>
 
-		 <form name="login" method="post"  action="Login" onsubmit="return proveraUnosa()" >
+		 <form name="login" method="post"  action="Login" >
    		Username:<br>
   		<input type="text" name="username"></br>
   		Password:<br>

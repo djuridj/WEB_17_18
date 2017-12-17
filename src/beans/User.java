@@ -1,6 +1,11 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+
+//import org.joda.time.LocalDate;
+
 
 public class User implements Serializable {
 
@@ -13,14 +18,18 @@ public class User implements Serializable {
 	private String telephone;
 	private String email;
 	private String regDate;
-	private Role role;
+	private String role;
+	
+	public ArrayList<Message> sentMessages;
+	public ArrayList<Topic> followedTopics;
+	public ArrayList<Subforum> followedSubforums;
 	
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public User(String username, String password, String firstname,
-			String lastname, String telephone, String email) {
+			String lastname, String telephone, String email, String regDate, String role) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -28,10 +37,12 @@ public class User implements Serializable {
 		this.lastname = lastname;
 		this.telephone = telephone;
 		this.email = email;
-		//this.regDate = regDate;
-		//this.role = role;
+		this.regDate = regDate;
+		this.role = role;
 	}
 
+	
+	
 	public String getUsername() {
 		return username;
 	}
@@ -80,6 +91,8 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
+	
+
 	public String getRegDate() {
 		return regDate;
 	}
@@ -88,13 +101,38 @@ public class User implements Serializable {
 		this.regDate = regDate;
 	}
 
-	public Role getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(Role role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
+
+	public ArrayList<Message> getSentMessages() {
+		return sentMessages;
+	}
+
+	public void setSentMessages(ArrayList<Message> sentMessages) {
+		this.sentMessages = sentMessages;
+	}
+
+	public ArrayList<Topic> getFollowedTopics() {
+		return followedTopics;
+	}
+
+	public void setFollowedTopics(ArrayList<Topic> followedTopics) {
+		this.followedTopics = followedTopics;
+	}
+
+	public ArrayList<Subforum> getFollowedSubforums() {
+		return followedSubforums;
+	}
+
+	public void setFollowedSubforums(ArrayList<Subforum> followedSubforums) {
+		this.followedSubforums = followedSubforums;
+	}
+	
 	
 
 }

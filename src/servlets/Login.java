@@ -29,7 +29,7 @@ public class Login extends HttpServlet {
 		User u = (User) session.getAttribute("user");
 		
 		if(!u.getUsername().equals("nema")){ //vec je ulogovan
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("logedIndex.jsp");
 			return;
 		}
 		request.getRequestDispatcher("loginRegularUser.jsp").forward(request, response);
@@ -56,17 +56,15 @@ public class Login extends HttpServlet {
 			User u = users.get(username);
 			
 			if(u.getPassword().equals(password)){
-				if(u.getRole().equals(Role.User)){
+				//if(u.getRole().equals(Role.User)){
 					System.out.println("User with a same name exists " + u.getUsername());
 					
 					HttpSession session = request.getSession();
 					session.setAttribute("user", u);
-					response.sendRedirect("Index.jsp");
+					response.sendRedirect("logedIndex.jsp");
 					return;
-				} else{
-					System.out.println("User " + u.getUsername() + " ne mere");
-					message = "User ne mere";
-				}
+
+				//}
 			} else {
 				System.out.println("Bad pass");
 				message = "Wrong username or pass, try again";
@@ -77,7 +75,7 @@ public class Login extends HttpServlet {
 			message = "Wrong username or pass, try again";
 		}
 	
-	RequestDispatcher rd = request.getRequestDispatcher("loginRegularUser.jsp");
+	RequestDispatcher rd = request.getRequestDispatcher("logedIndex.jsp");
 	rd.forward(request, response);
 	return;
 	}
