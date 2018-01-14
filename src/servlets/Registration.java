@@ -11,8 +11,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormatter;
 
 import beans.Role;
 import beans.User;
@@ -24,10 +22,8 @@ public class Registration extends HttpServlet {
 	public Registration() {
         super();
 	} 
-
-	//File file = new File("../../WebContent/db/users.txt");
-	String path = "C:/Users/DIOLE/workspace helios/WEB_17_18/WebContent/db/";
-	//(C:/Users/DIOLE/workspace helios/WEB_17_18/WebContent/db/users.txt)
+	
+	public static String path = "C:/Users/DIOLE/workspace helios/WEB_17_18/WebContent/db/";
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());

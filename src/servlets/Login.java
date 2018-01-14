@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.Role;
 import beans.User;
 
 public class Login extends HttpServlet {
@@ -21,7 +20,7 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 	
-	String path = "C:/Users/DIOLE/workspace helios/WEB_17_18/WebContent/db/";
+	String path = servlets.Registration.path;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

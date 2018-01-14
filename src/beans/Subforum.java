@@ -6,11 +6,11 @@ public class Subforum implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	String name;
-	String description;
-	String icon;
-	String rules;
-	String mod;
+	public String name;
+	public String description;
+	public String icon;
+	public String rules;
+	public String mod;
 	// ostali moderatori
 	
 	public Subforum() {

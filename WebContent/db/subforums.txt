@@ -1,5 +1,5 @@
 name | description | icon | rules | mod
-forum|opis|icon|pravila|mod
-forke|opis|icon|pravila|mod
-asforke|opis|icon|pravila|mod
-aazforke|opis|icon|pravila|mod
+djuricev|opis|ikona|pravila|djuric|
+1|1|1|1|djuric|
+z|z|z|z|djuric|
+2|2|2|2|djuric|

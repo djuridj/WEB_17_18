@@ -1,0 +1,7 @@
+subforum|headline|type|author|date|content|0|0
+
+zzzzzz|aaaa|zzz|djuric|14/01/2018|zz|0|0|
+asub|aaa|sss|djuric|14/01/2018|zzz|0|0|
+null|asdfa|df|djuric|14/01/2018|df|0|0|
+ooooo|aaaa|zzzz|djuric|14/01/2018|zzzzz|0|0|
+dupe|aa|aa|djuric|14/01/2018|aa|0|0|

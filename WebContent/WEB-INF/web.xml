@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-    version="3.0">
-    
-<display-name>WEB_17_18</display-name>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>WEB_17_18</display-name>
   <welcome-file-list>
     <welcome-file>Index.jsp</welcome-file>
   </welcome-file-list>
@@ -20,6 +16,24 @@
     <servlet-name>Login</servlet-name>
     <servlet-class>servlets.Login</servlet-class>
   </servlet>
+  <servlet>
+    <description></description>
+    <display-name>Logout</display-name>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>servlets.Logout</servlet-class>
+  </servlet>
+  <servlet>
+    <description></description>
+    <display-name>AddSubforum</display-name>
+    <servlet-name>AddSubforum</servlet-name>
+    <servlet-class>servlets.AddSubforum</servlet-class>
+  </servlet>
+  <servlet>
+    <description></description>
+    <display-name>FollowSubforum</display-name>
+    <servlet-name>FollowSubforum</servlet-name>
+    <servlet-class>servlets.FollowSubforum</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Registration</servlet-name>
     <url-pattern>/Registration</url-pattern>
@@ -28,14 +42,16 @@
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>LoginOff</display-name>
-    <servlet-name>LoginOff</servlet-name>
-    <servlet-class>Servlets.LoginOff</servlet-class>
-  </servlet>
   <servlet-mapping>
-    <servlet-name>LoginOff</servlet-name>
-    <url-pattern>/LoginOff</url-pattern>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/Logout</url-pattern>
   </servlet-mapping>
-  </web-app>
+  <servlet-mapping>
+    <servlet-name>AddSubforum</servlet-name>
+    <url-pattern>/AddSubforum</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FollowSubforum</servlet-name>
+    <url-pattern>/FollowSubforum</url-pattern>
+  </servlet-mapping>
+</web-app>
