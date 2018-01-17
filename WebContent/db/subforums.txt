@@ -1,5 +1,15 @@
-name | description | icon | rules | mod
+name | description | icon | rules | moderator
 djuricev|opis|ikona|pravila|djuric|
 1|1|1|1|djuric|
 z|z|z|z|djuric|
 2|2|2|2|djuric|
+3|3|3|3|djuric|
+a|a|a|a|djuric|
+zzzz|zz|z|z|djuric|
+asdf|aa|aa|aa|djuric|
+eo|eo|eo|eo|u|
+j|j|j|j|u|
+123|123|123|123|u|
+z|z|z|z|u|
+pppp|pppp|pppp|pppp|u|
+aa|ss|ss|zz|u|

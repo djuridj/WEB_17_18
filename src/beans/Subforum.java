@@ -10,7 +10,7 @@ public class Subforum implements Serializable {
 	public String description;
 	public String icon;
 	public String rules;
-	public String mod;
+	public String moderator;
 	// ostali moderatori
 	
 	public Subforum() {
@@ -18,13 +18,13 @@ public class Subforum implements Serializable {
 	}
 
 	public Subforum(String name, String description, String icon, String rules,
-			String mod) {
+			String moderator) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.icon = icon;
 		this.rules = rules;
-		this.mod = mod;
+		this.moderator = moderator;
 	}
 
 	public String getName() {
@@ -59,14 +59,12 @@ public class Subforum implements Serializable {
 		this.rules = rules;
 	}
 
-	public String getMod() {
-		return mod;
+	public String getModerator() {
+		return moderator;
 	}
 
-	public void setMod(String mod) {
-		this.mod = mod;
+	public void setModerator(String moderator) {
+		this.moderator = moderator;
 	}
-	
-	
 	
 }

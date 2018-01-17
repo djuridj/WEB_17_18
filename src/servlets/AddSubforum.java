@@ -43,23 +43,25 @@ public class AddSubforum extends HttpServlet {
 		String rules = request.getParameter("rules");
 		
 		User u = (User)request.getSession().getAttribute("user");
-		String mod = u.getUsername();
-		//String mod = request.getParameter("moderator");
+		HttpSession session = request.getSession();
+		//Subforum sub = (Subforum)request.getSession().getAttribute("subforum");
+		String moderator = u.getUsername();
 	
 		Serialization s = new Serialization();
 		
-		Subforum sf = new Subforum(name, description, icon, rules, mod);
+		Subforum sf = new Subforum(name, description, icon, rules, moderator);
 		
 		try {
 			s.addForum(sf, path);
+			//s.listSubforums(path);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		HttpSession session = request.getSession();
+		
 		session.setAttribute("subforum", sf);
 		//request.getSession().setAttribute("subforum",sf);
-		RequestDispatcher rd = request.getRequestDispatcher("notlogedIndex.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("subforums.jsp");
 		rd.forward(request, response);
 		return;
 	}

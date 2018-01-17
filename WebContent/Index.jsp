@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<a href="subforumsList.jsp">SUBFORUMS</a>
+<a href="subforums.jsp">SUBFORUMS</a>
 
 	<h2>Login</h2>
 

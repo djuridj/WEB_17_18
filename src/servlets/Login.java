@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.Subforum;
+import beans.Topic;
 import beans.User;
 
 public class Login extends HttpServlet {
@@ -26,6 +28,8 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
+		
+		
 		
 		if(!u.getUsername().equals("nema")){ //vec je ulogovan
 			response.sendRedirect("logedIndex.jsp");
@@ -50,6 +54,10 @@ public class Login extends HttpServlet {
 	Serialization s = new Serialization();
 		
 	Hashtable<String, User> users = s.listUsers(path);
+	Hashtable<String, Subforum> sf = s.listSubforums(path);
+	Hashtable<String, Topic> tp = s.listTopics(path);
+	
+	//session.setAttribute("pretragaProdavnicaSesija", prodavac);
 	
 		if(users.containsKey(username)){
 			User u = users.get(username);
@@ -60,6 +68,8 @@ public class Login extends HttpServlet {
 					
 					HttpSession session = request.getSession();
 					session.setAttribute("user", u);
+					session.setAttribute("subforum", sf);
+					session.setAttribute("topic", tp);
 					response.sendRedirect("logedIndex.jsp");
 					return;
 

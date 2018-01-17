@@ -30,6 +30,7 @@ public class Logout extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		session.setAttribute("user", "");
+		session.setAttribute("subforum", "");
 		response.sendRedirect("Index.jsp");
 	}
 

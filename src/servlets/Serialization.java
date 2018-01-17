@@ -93,7 +93,7 @@ public class Serialization {
 		sb.append(subforum.getDescription() + "|");
 		sb.append(subforum.getIcon() + "|");
 		sb.append(subforum.getRules() + "|");
-		sb.append(subforum.getMod() + "|");
+		sb.append(subforum.getModerator() + "|");
 		fw.write(sb.toString());
 		fw.close();
 	}
@@ -118,9 +118,9 @@ public class Serialization {
 					String description = st.nextToken().trim();
 					String icon = st.nextToken().trim();
 					String rules = st.nextToken().trim();
-					String mod = st.nextToken().trim();
+					String moderator = st.nextToken().trim();
 					
-					Subforum s = new Subforum(name, description, icon, rules, mod);
+					Subforum s = new Subforum(name, description, icon, rules, moderator);
 					
 					subforums.put(name, s);
 				}
@@ -166,9 +166,9 @@ public class Serialization {
 					String description = st.nextToken().trim();
 					String icon = st.nextToken().trim();
 					String rules = st.nextToken().trim();
-					String mod = st.nextToken().trim();
+					String moderator = st.nextToken().trim();
 
-					Subforum sf = new Subforum(name,description,icon,rules, mod);
+					Subforum sf = new Subforum(name,description,icon,rules, moderator);
 					
 					if(nameS != name)
 					{
