@@ -13,25 +13,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Topic;
+import beans.Comment;
 import beans.User;
 
 /**
- * Servlet implementation class AddTopic
+ * Servlet implementation class AddComment
  */
-@WebServlet("/AddTopic")
-public class AddTopic extends HttpServlet {
+@WebServlet("/AddComment")
+public class AddComment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	String path = servlets.Registration.path;
-	
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddTopic() {
+    public AddComment() {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    String path = servlets.Registration.path;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -45,31 +45,30 @@ public class AddTopic extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Subforum sf = (Subforum)request.getSession().getAttribute("subforum");
-		String subforum = request.getParameter("subforum");
-		String headline = request.getParameter("headline");
-		String type = request.getParameter("type");
+		String topic = request.getParameter("topic");
 		User u = (User)request.getSession().getAttribute("user");
 		String author = u.getUsername();
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		Date today = Calendar.getInstance().getTime();        
 		String date = df.format(today);
-		String content = request.getParameter("content");
-		int likes = 0;
-		int dislikes = 0;
+		String parent = request.getParameter("parent");
+		String text = request.getParameter("text");
+		int positives = 0;
+		int negatives = 0;
 		
 		Serialization s = new Serialization();
 		
-		Topic t = new Topic(subforum,headline,type,author,date,content,likes,dislikes);
+		Comment c = new Comment(topic,author,date,parent,text,positives,negatives);
+		
 		
 		try {
-			s.addTopic(t, path);
+			s.addComment(c, path);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.getSession().setAttribute("topic",t);
-		RequestDispatcher rd = request.getRequestDispatcher("subforumContent.jsp");
+		request.getSession().setAttribute("comment",c);
+		RequestDispatcher rd = request.getRequestDispatcher("topicContent.jsp");
 		rd.forward(request, response);
 		return;
 	}

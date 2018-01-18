@@ -36,17 +36,17 @@ public class DeleteSubforum extends HttpServlet {
 		HttpSession session = request.getSession();
 		String path = servlets.Registration.path;
 		
-		Hashtable<String, Subforum> subforums =  new Hashtable<String, Subforum>();
-		session.getAttribute("subforum");
+		@SuppressWarnings("unchecked")
+		Hashtable<String, Subforum> subs = (Hashtable<String, Subforum>) session.getAttribute("subforum");
 		
-		String name = request.getParameter("name1");			
-		subforums.remove(name);
+		String name = request.getParameter("name1");	
+		subs.remove(name);
 		
-		session.setAttribute("subforum", subforums);
+		session.setAttribute("subforum", subs);
 		
-		Serialization s = new Serialization();
+		Serialization s = new Serialization();	
 		s.deleteSubforum(name, path);
-		RequestDispatcher disp = request.getRequestDispatcher("notlogedIndex.jsp");
+		RequestDispatcher disp = request.getRequestDispatcher("subforums.jsp");
 		disp.forward(request, response);
 	}
 

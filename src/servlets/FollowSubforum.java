@@ -29,6 +29,7 @@ public class FollowSubforum extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		@SuppressWarnings("rawtypes")
 		Enumeration e = request.getParameterNames();
 		User u = (User)request.getSession().getAttribute("user");
 		int j=0;

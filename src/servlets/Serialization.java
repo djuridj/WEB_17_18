@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
 
+import beans.Comment;
 import beans.Subforum;
 import beans.Topic;
 import beans.User;
@@ -142,7 +143,7 @@ public class Serialization {
 		return subforums;
 	}
 	
-	public void deleteSubforum(String nameS,String path) throws IOException {
+	public void deleteSubforum(String name,String path) throws IOException {
 		// TODO Auto-generated method stub
 
 		File file = new File(path+"\\subforums.txt");
@@ -162,15 +163,17 @@ public class Serialization {
 
 				StringTokenizer st = new StringTokenizer(text, "|");
 				while (st.hasMoreTokens()) {
-					String name = st.nextToken().trim();
+					
+					String names = st.nextToken().trim();
 					String description = st.nextToken().trim();
 					String icon = st.nextToken().trim();
 					String rules = st.nextToken().trim();
 					String moderator = st.nextToken().trim();
-
-					Subforum sf = new Subforum(name,description,icon,rules, moderator);
 					
-					if(nameS != name)
+					@SuppressWarnings("unused")
+					Subforum sf = new Subforum(names, description, icon, rules, moderator);
+					
+					if(names != name)
 					{
 						pw.println(text);
 					}
@@ -199,7 +202,6 @@ public class Serialization {
 	      //Rename the new file to the filename the original file had.
 	      if (!tempFile.renameTo(file))
 	        System.out.println("Could not rename file");
-		
 		
 	}
 	
@@ -270,6 +272,72 @@ public class Serialization {
 		return topics;
 	}
 
+	
+	//COMMENTS
+	
+	public void addComment(Comment comment, String path) throws IOException {
+		FileWriter fw = new FileWriter(path + "/comments.txt", true);
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("\n");
+		sb.append(comment.getTopic() + "|");
+		sb.append(comment.getAuthor() + "|");
+		sb.append(comment.getDate() + "|");
+		sb.append(comment.getParent() + "|");
+		sb.append(comment.getText() + "|");
+		sb.append(comment.getPostivies() + "|");
+		sb.append(comment.getNegatives() + "|");
+		fw.write(sb.toString());
+		fw.close();
+	}
+	
+	public Hashtable<String, Comment> listComments(String path) {		
+		Hashtable<String, Comment> comments = new Hashtable<String, Comment>();
+		
+
+		File file = new File(path + "\\comments.txt");
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String text = null;
+
+			while ((text = reader.readLine()) != null) {
+
+				StringTokenizer st = new StringTokenizer(text, "|");
+				
+				while (st.hasMoreTokens()) {
+					
+					String topic = st.nextToken().trim();
+					String author = st.nextToken().trim();
+					String date = st.nextToken().trim();
+					String parent = st.nextToken().trim();
+					String textt = st.nextToken().trim();
+					int positives = Integer.parseInt(st.nextToken().trim());
+					int negatives = Integer.parseInt(st.nextToken().trim());
+					
+					Comment c = new Comment(topic, author, date, parent, textt, positives, negatives);
+					
+					comments.put(textt, c);
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+				}
+			} catch (IOException e) {
+			}
+		}
+
+		return comments;
+	}
+
+	
 	public Hashtable<String, User> getUsers() {
 		return users;
 	}

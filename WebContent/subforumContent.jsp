@@ -11,7 +11,6 @@
 
 <p>Logged user: ${sessionScope.user.username}</p>
 <p>User role: ${sessionScope.user.role}</p>
-<p>Registration date: ${sessionScope.user.regDate}</p>
 
 	<form>
     <h3>Subforum Details:</h3>
@@ -91,6 +90,10 @@
 	</c:forEach>
 </table>
 	
+<form name="newTopic" action="topicCreate.jsp">
+    			<input type="submit" name="newButton" value="New Topic"></input>
+    			<input type="hidden" name="name" value="${param.name}"></input>
+</form>
 
 </body>
 </html>

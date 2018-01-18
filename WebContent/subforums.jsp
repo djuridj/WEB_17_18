@@ -51,14 +51,7 @@
   			</form>
   			</td>
   			<td>
-			<form name="openSubforum" action="subforumContent.jsp">
-    			<input type="submit" name="openButton" value="Delete"></input>
-    			<input type="hidden" name="name" value="${forum.value.name}"></input>
-    			<input type="hidden" name="description" value="${forum.value.description}"></input>
-    			<input type="hidden" name="icon" value="${forum.value.icon}"></input>
-    			<input type="hidden" name="rules" value="${forum.value.rules}"></input>
-    			<input type="hidden" name="moderator" value="${forum.value.moderator}"></input>
-  			</form>
+			<a href="./DeleteSubforum?name1=${forum.value.name}" type="button">DELETE</a>
   			</td>
 		</tr>
 	</c:forEach>

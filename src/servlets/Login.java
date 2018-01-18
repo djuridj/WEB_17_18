@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.Comment;
 import beans.Subforum;
 import beans.Topic;
 import beans.User;
@@ -42,6 +43,7 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		@SuppressWarnings("unused")
 		String message = "";
 		
 		if (username == null || password == null) {
@@ -56,6 +58,7 @@ public class Login extends HttpServlet {
 	Hashtable<String, User> users = s.listUsers(path);
 	Hashtable<String, Subforum> sf = s.listSubforums(path);
 	Hashtable<String, Topic> tp = s.listTopics(path);
+	Hashtable<String, Comment> com = s.listComments(path);
 	
 	//session.setAttribute("pretragaProdavnicaSesija", prodavac);
 	
@@ -70,6 +73,7 @@ public class Login extends HttpServlet {
 					session.setAttribute("user", u);
 					session.setAttribute("subforum", sf);
 					session.setAttribute("topic", tp);
+					session.setAttribute("comment", com);
 					response.sendRedirect("logedIndex.jsp");
 					return;
 
