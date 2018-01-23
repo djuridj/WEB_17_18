@@ -6,3 +6,9 @@ null|asdfa|df|djuric|14/01/2018|df|0|0|
 ooooo|aaaa|zzzz|djuric|14/01/2018|zzzzz|0|0|
 dupe|aa|aa|djuric|14/01/2018|aa|0|0|
 aa|asd|aa|u|18/01/2018|zxc|0|0|
+eo|asd|zz|u|22/01/2018|333|0|0|
+eo|asd|zz|u|22/01/2018|333|0|0|
+eo|ert|zzz|djuric|22/01/2018|cvxb|0|0|
+eo|asddd|aaa|djuric|22/01/2018|zzz|0|0|
+eo|123|tip|djuric|22/01/2018|zzz|0|0|
+eo|123|tip|djuric|22/01/2018|zzz|0|0|

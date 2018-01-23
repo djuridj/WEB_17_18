@@ -6,6 +6,7 @@ public class Comment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	private int id;
 	private String topic;
 	private String author;
 	private String date;
@@ -19,8 +20,9 @@ public class Comment implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Comment(String topic, String author, String date, String parent, String text, int postivies, int negatives) {
+	public Comment(int id, String topic, String author, String date, String parent, String text, int postivies, int negatives) {
 		super();
+		this.id = id;
 		this.topic = topic;
 		this.author = author;
 		this.date = date;
@@ -28,6 +30,14 @@ public class Comment implements Serializable {
 		this.text = text;
 		this.postivies = postivies;
 		this.negatives = negatives;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTopic() {

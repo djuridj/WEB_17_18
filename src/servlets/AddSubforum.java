@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+//import java.util.Hashtable;
+import java.util.Hashtable;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,26 +46,21 @@ public class AddSubforum extends HttpServlet {
 		
 		User u = (User)request.getSession().getAttribute("user");
 		HttpSession session = request.getSession();
-		//Subforum sub = (Subforum)request.getSession().getAttribute("subforum");
 		String moderator = u.getUsername();
 	
 		Serialization s = new Serialization();
 		
 		Subforum sf = new Subforum(name, description, icon, rules, moderator);
 		
-		try {
-			s.addForum(sf, path);
-			//s.listSubforums(path);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		@SuppressWarnings("unchecked")
+		Hashtable<String, Subforum> sub = (Hashtable<String, Subforum>) session.getAttribute("subforum");
+
 		
-		session.setAttribute("subforum", sf);
-		//request.getSession().setAttribute("subforum",sf);
+		sub.put(name, sf);
+		session.setAttribute("subforum", sub);
 		RequestDispatcher rd = request.getRequestDispatcher("subforums.jsp");
 		rd.forward(request, response);
-		return;
+		s.addForum(sf, path);
 	}
 
 }

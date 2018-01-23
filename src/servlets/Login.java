@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.Comment;
+import beans.FollowedSub;
+import beans.Message;
+import beans.SavedTopic;
 import beans.Subforum;
 import beans.Topic;
 import beans.User;
@@ -59,6 +62,9 @@ public class Login extends HttpServlet {
 	Hashtable<String, Subforum> sf = s.listSubforums(path);
 	Hashtable<String, Topic> tp = s.listTopics(path);
 	Hashtable<String, Comment> com = s.listComments(path);
+	Hashtable<String, FollowedSub> fs = s.listFollowed(path);
+	Hashtable<String, Message> mes = s.listMessages(path);
+	Hashtable<String, SavedTopic> stc = s.listSavedTopics(path);
 	
 	//session.setAttribute("pretragaProdavnicaSesija", prodavac);
 	
@@ -71,9 +77,13 @@ public class Login extends HttpServlet {
 					
 					HttpSession session = request.getSession();
 					session.setAttribute("user", u);
+					session.setAttribute("allusers", users);
 					session.setAttribute("subforum", sf);
 					session.setAttribute("topic", tp);
 					session.setAttribute("comment", com);
+					session.setAttribute("followedsubforum", fs);
+					session.setAttribute("message", mes);
+					session.setAttribute("savedtopic", stc);
 					response.sendRedirect("logedIndex.jsp");
 					return;
 

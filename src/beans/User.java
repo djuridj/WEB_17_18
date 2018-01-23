@@ -2,11 +2,6 @@ package beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-
-//import org.joda.time.LocalDate;
-
 
 public class User implements Serializable {
 

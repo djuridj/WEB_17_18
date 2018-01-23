@@ -1,8 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Hashtable;
 
 import javax.servlet.RequestDispatcher;
@@ -10,9 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import beans.Subforum;
-import beans.User;
+import beans.FollowedSub;
 
 public class FollowSubforum extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,66 +23,41 @@ public class FollowSubforum extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    String path = servlets.Registration.path;
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		@SuppressWarnings("rawtypes")
-		Enumeration e = request.getParameterNames();
-		User u = (User)request.getSession().getAttribute("user");
-		int j=0;
-		ArrayList<String> parameterNames = new ArrayList<String>();
-		Hashtable<String, Subforum> hmp = new Hashtable<String, Subforum>();
-		
-		while(e.hasMoreElements())
-		{
-			String parameterName = (String)e.nextElement();
-			parameterNames.add(parameterName);
-		}
-		
-		String path = servlets.Registration.path;
-		Serialization s = new Serialization();
 
-		hmp = s.listSubforums(path);
-		ArrayList<Subforum> hm = new ArrayList<Subforum>(hmp.values()); 
-		
-		Hashtable<String, User> hmk = s.listUsers(path);
-		ArrayList<User> hmu = new ArrayList<User>(hmk.values());
-		
-		for(int i=0; i<parameterNames.size(); i++)
-		{
-			if(parameterNames.get(i).contains("Dodaj"))
-			{
-				int index = Integer.parseInt(parameterNames.get(i).substring(5));
-				for(Subforum p : hm)
-				{
-					if(j == index)
-					{
-						for(User us : hmu)
-						{
-							if(us.getUsername().equals(u.getUsername()))
-							{
-								u.followedSubforums.add(p);
-								break;
-							}
-						}
-					}
-					j++;
-				}
-				break;
-			}
-		}
-		
-		s.setUsers(hmk);
-		RequestDispatcher rd = request.getRequestDispatcher("logedIndex.jsp");
-		rd.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		String name = request.getParameter("name");
+		String description = request.getParameter("description");
+		String icon = request.getParameter("icon");
+		String rules = request.getParameter("rules");
+		String moderator = request.getParameter("moderator");
+		String followe = request.getParameter("followe");
+	
+		HttpSession session = request.getSession();
+		
+		Serialization s = new Serialization();
+		
+		FollowedSub fs = new FollowedSub(name, description, icon, rules, moderator, followe);
+		
+		@SuppressWarnings("unchecked")
+		Hashtable<String, FollowedSub> fsub = (Hashtable<String, FollowedSub>) session.getAttribute("followedsubforum");
+
+		
+		fsub.put(name, fs);
+		session.setAttribute("followedsubforum", fsub);
+		RequestDispatcher rd = request.getRequestDispatcher("subforums.jsp");
+		rd.forward(request, response);
+		s.addFollowed(fs, path);
 	}
 
 }

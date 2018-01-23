@@ -5,13 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Subforum</title>
 </head>
-<body>
-
-<a href="logedIndex.jsp">USER PAGE</a>
-<a href="subforums.jsp">SUBFORUMS</a>
-
 <p>Logged user: ${sessionScope.user.username}</p>
 <p>User role: ${sessionScope.user.role}</p>
 <p>Subforum: ${param.name}</p>
@@ -49,7 +44,6 @@
 			<th width="20%">Headline</th>
 			<th width="20%">Type</th>
 			<th width="20%">Author</th>
-			<th width="20%">Content</th>
 			<th width="20%">Date</th>			
 		</tr>
 	<c:forEach items="${topic}" var="top">
@@ -59,7 +53,6 @@
 			<td align="center">${top.value.headline}</td>
 			<td align="center">${top.value.type}</td>
 			<td align="center">${top.value.author}</td>
-			<td align="center">${top.value.content}</td>
 			<td align="center">${top.value.date}</td>
 			<td>
 			<form name="openTopic" action="topicContent.jsp">
@@ -68,20 +61,17 @@
     			<input type="hidden" name="headline" value="${top.value.headline}"></input>
     			<input type="hidden" name="type" value="${top.value.type}"></input>
     			<input type="hidden" name="author" value="${top.value.author}"></input>
-    			<input type="hidden" name="content" value="${top.value.content}"></input>
     			<input type="hidden" name="date" value="${top.value.date}"></input>
   			</form>
   			</td>
   			<td>
-			<form name="saveTopic" method="POST" action="SaveTopic">
-    			<input type="submit" name="saveTopicButton" value="Save Topic"></input>
-    			<input type="hidden" name="subforum" value="${top.value.subforum}"></input>
-    			<input type="hidden" name="headline" value="${top.value.headline}"></input>
-    			<input type="hidden" name="type" value="${top.value.type}"></input>
-    			<input type="hidden" name="author" value="${top.value.author}"></input>
-    			<input type="hidden" name="date" value="${top.value.date}"></input>
-    			<input type="hidden" name="content" value="${top.value.content}"></input>
-    			<input type="hidden" name="follower" value="${user.username}"></input>
+			<form name="openSubforum" action="subforumContent.jsp">
+    			<input type="submit" name="openButton" value="Follow"></input>
+    			<input type="hidden" name="name" value="${forum.value.name}"></input>
+    			<input type="hidden" name="description" value="${forum.value.description}"></input>
+    			<input type="hidden" name="icon" value="${forum.value.icon}"></input>
+    			<input type="hidden" name="rules" value="${forum.value.rules}"></input>
+    			<input type="hidden" name="moderator" value="${forum.value.moderator}"></input>
   			</form>
   			</td>
   			<td>

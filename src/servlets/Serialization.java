@@ -11,6 +11,9 @@ import java.util.Hashtable;
 import java.util.StringTokenizer;
 
 import beans.Comment;
+import beans.FollowedSub;
+import beans.Message;
+import beans.SavedTopic;
 import beans.Subforum;
 import beans.Topic;
 import beans.User;
@@ -280,6 +283,7 @@ public class Serialization {
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("\n");
+		sb.append(comment.getId() + "|");
 		sb.append(comment.getTopic() + "|");
 		sb.append(comment.getAuthor() + "|");
 		sb.append(comment.getDate() + "|");
@@ -307,6 +311,7 @@ public class Serialization {
 				
 				while (st.hasMoreTokens()) {
 					
+					int id = Integer.parseInt(st.nextToken().trim());
 					String topic = st.nextToken().trim();
 					String author = st.nextToken().trim();
 					String date = st.nextToken().trim();
@@ -315,7 +320,7 @@ public class Serialization {
 					int positives = Integer.parseInt(st.nextToken().trim());
 					int negatives = Integer.parseInt(st.nextToken().trim());
 					
-					Comment c = new Comment(topic, author, date, parent, textt, positives, negatives);
+					Comment c = new Comment(id, topic, author, date, parent, textt, positives, negatives);
 					
 					comments.put(textt, c);
 				}
@@ -346,5 +351,186 @@ public class Serialization {
 		this.users = users;
 	}
 	
+	//MESSAGES
+	public void addMessage(Message message, String path) throws IOException {
+		FileWriter fw = new FileWriter(path + "/messages.txt", true);
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("\n");
+		sb.append(message.getSender() + "|");
+		sb.append(message.getReciever() + "|");
+		sb.append(message.getContent() + "|");
+		sb.append(message.getRed() + "|");
+		fw.write(sb.toString());
+		fw.close();
+	}
+	
+	public Hashtable<String, Message> listMessages(String path) {		
+		Hashtable<String, Message> messages = new Hashtable<String, Message>();
+		
+
+		File file = new File(path + "\\messages.txt");
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String text = null;
+
+			while ((text = reader.readLine()) != null) {
+
+				StringTokenizer st = new StringTokenizer(text, "|");
+				
+				while (st.hasMoreTokens()) {
+					
+					String sender = st.nextToken().trim();
+					String reciever = st.nextToken().trim();
+					String content = st.nextToken().trim();
+					//String red = st.nextToken().trim();
+					boolean red = Boolean.parseBoolean(st.nextToken().trim());
+					
+					Message m = new Message(sender, reciever, content, red);
+					
+					messages.put(text, m);
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+				}
+			} catch (IOException e) {
+			}
+		}
+
+		return messages;
+	}
+	
+	
+	//FOLLOWED SUBFORUMS
+	public void addFollowed(FollowedSub fs, String path) throws IOException {
+		FileWriter fw = new FileWriter(path + "/followedsubs.txt", true);
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("\n");
+		sb.append(fs.getName() + "|");
+		sb.append(fs.getDescription() + "|");
+		sb.append(fs.getIcon() + "|");
+		sb.append(fs.getRules() + "|");
+		sb.append(fs.getModerator() + "|");
+		sb.append(fs.getFollowe() + "|");
+		fw.write(sb.toString());
+		fw.close();
+	}
+	
+	public Hashtable<String, FollowedSub> listFollowed(String path) {		
+		Hashtable<String, FollowedSub> fs = new Hashtable<String, FollowedSub>();
+		
+
+		File file = new File(path + "\\followedsubs.txt");
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String text = null;
+
+			while ((text = reader.readLine()) != null) {
+
+				StringTokenizer st = new StringTokenizer(text, "|");
+				
+				while (st.hasMoreTokens()) {
+					
+					String name = st.nextToken().trim();
+					String description = st.nextToken().trim();
+					String icon = st.nextToken().trim();
+					String rules = st.nextToken().trim();
+					String moderator = st.nextToken().trim();
+					String followe = st.nextToken().trim();
+					
+					FollowedSub followedsub = new FollowedSub(name, description, icon, rules, moderator, followe);
+					
+					fs.put(name, followedsub);
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+				}
+			} catch (IOException e) {
+			}
+		}
+
+		return fs;
+	}
+	
+	public void addSavedTopic(SavedTopic st, String path) throws IOException {
+		FileWriter fw = new FileWriter(path + "/savedtopics.txt", true);
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("\n");
+		sb.append(st.getSubforum() + "|");
+		sb.append(st.getHeadline() + "|");
+		sb.append(st.getType() + "|");
+		sb.append(st.getAuthor() + "|");
+		sb.append(st.getDate() + "|");
+		sb.append(st.getContent() + "|");
+		sb.append(st.getFollower() + "|");
+		fw.write(sb.toString());
+		fw.close();
+	}
+	
+	public Hashtable<String, SavedTopic> listSavedTopics(String path) {		
+		Hashtable<String, SavedTopic> stc = new Hashtable<String, SavedTopic>();
+		
+
+		File file = new File(path + "\\savedtopics.txt");
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String text = null;
+
+			while ((text = reader.readLine()) != null) {
+
+				StringTokenizer st = new StringTokenizer(text, "|");
+				
+				while (st.hasMoreTokens()) {
+					
+					String subforum = st.nextToken().trim();
+					String headline = st.nextToken().trim();
+					String type = st.nextToken().trim();
+					String author = st.nextToken().trim();
+					String date = st.nextToken().trim();
+					String content = st.nextToken().trim();
+					String follower = st.nextToken().trim();
+					
+					SavedTopic sat = new SavedTopic(subforum, headline, type, author, date, content, follower);
+					
+					stc.put(headline, sat);
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+				}
+			} catch (IOException e) {
+			}
+		}
+
+		return stc;
+	}
 	
 }

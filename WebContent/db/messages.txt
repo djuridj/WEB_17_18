@@ -1,0 +1,4 @@
+sender|reciever|message|red|
+u|djuric|zxv|false|
+djuric|u|kome ti more?|false|
+user|user|ej moreeee|false|

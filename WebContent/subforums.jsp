@@ -9,6 +9,9 @@
 </head>
 <body>
 
+<a href="logedIndex.jsp">USER PAGE</a>
+<a href="subforums.jsp">SUBFORUMS</a>
+
 <p>Logged user: ${sessionScope.user.username}</p>
 <p>User role: ${sessionScope.user.role}</p>
 <p>Registration date: ${sessionScope.user.regDate}</p>
@@ -40,26 +43,54 @@
     			<input type="hidden" name="moderator" value="${forum.value.moderator}"></input>
   			</form>
   			</td>
+  			<c:if test="${ user.username != null}">
   			<td>
-			<form name="openSubforum" action="subforumContent.jsp">
-    			<input type="submit" name="openButton" value="Follow"></input>
-    			<input type="hidden" name="name" value="${forum.value.name}"></input>
-    			<input type="hidden" name="description" value="${forum.value.description}"></input>
-    			<input type="hidden" name="icon" value="${forum.value.icon}"></input>
-    			<input type="hidden" name="rules" value="${forum.value.rules}"></input>
-    			<input type="hidden" name="moderator" value="${forum.value.moderator}"></input>
-  			</form>
+				<form name="followSubforum" method="POST" action="FollowSubforum">
+	    			<input type="submit" value="Follow Subforum"></input>
+	    			<input type="hidden" name="name" value="${forum.value.name}"></input>
+	    			<input type="hidden" name="description" value="${forum.value.description}"></input>
+	    			<input type="hidden" name="icon" value="${forum.value.icon}"></input>
+	    			<input type="hidden" name="rules" value="${forum.value.rules}"></input>
+	    			<input type="hidden" name="moderator" value="${forum.value.moderator}"></input>
+	    			<input type="hidden" name="followe" value="${sessionScope.user.username}"></input>
+	  			</form>
   			</td>
   			<td>
 			<a href="./DeleteSubforum?name1=${forum.value.name}" type="button">DELETE</a>
   			</td>
+  			</c:if>
 		</tr>
 	</c:forEach>
 </table>
 
+<c:if test="${ user.role != 'User'}">
+	<h2>New subforum addition</h2>
 
-<c:if test="${ user.role != 'User'}"> 
-	<a href="subforumCreate.jsp">New Subforum</a>
+	<form name = "addSubforum" method="POST" action="AddSubforum">
+		<table title="Enter new subforum data" align="center" >
+		
+		<tr>
+		<td align="right">Name: </td><td><input type="text" name="name"></td> 
+		</tr>
+		
+		<tr>
+		<td align="right">Description:  </td><td><input	type="text" name="description"></td>
+		</tr>
+		
+		<tr>
+		<td align="right">Icon:  </td><td><input type="text"	name="icon"></td>	
+		</tr>
+		
+		<tr>
+		<td align="right">Rules:	 </td><td>	<input type="text" name="rules"></td>
+		</tr>
+		
+		<tr>
+		<td colspan="2" align="left"><input type = "submit" value="AddSubforum"></td>
+		</tr>
+		 
+		 </table>
+	</form>
 </c:if>
 
 </body>

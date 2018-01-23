@@ -2,15 +2,18 @@ package servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Hashtable;
 
 import beans.Role;
 import beans.User;
@@ -43,15 +46,22 @@ public class Registration extends HttpServlet {
 		String regDate = df.format(today);
 		String role = Role.User.name();
 	
+		//HttpSession session = request.getSession();
+		
 		Serialization s = new Serialization();
 		
 		User u = new User(username, password, firstname, lastname, telephone, email, regDate, role);
-		try {
-			s.addUser(u, path);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		//@SuppressWarnings("unchecked")
+		//Hashtable<String, User> usr = (Hashtable<String, User>) session.getAttribute("allusers");
+		
+		//usr.put(username, u);
+		//session.setAttribute("allusers", usr);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("Index.jsp");
+		rd.forward(request, response);
+		s.addUser(u, path);
+		
 	}		
 
 }

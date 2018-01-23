@@ -29,7 +29,7 @@
 		 
 		 <input type="hidden" name="topic" value="${param.headline}"></input>
 		 
-		 <input type="hidden" name="text" value="${param.text}"></input>
+		 <input type="hidden" name="parent" value="${param.parent}"></input>
 		 
 	</form>
 

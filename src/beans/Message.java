@@ -6,41 +6,43 @@ public class Message implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private String userSender;
-	private String userReceiver;
+	private String sender;
+	private String reciever;
 	private String content;
 	private Boolean red;
 	
-	private User user;
 	
 	public Message() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Message(String userSender, String userReceiver, String content,
-			Boolean red, User user) {
+	public Message(String sender, String reciever, String content,
+			Boolean red) {
 		super();
-		this.userSender = userSender;
-		this.userReceiver = userReceiver;
+		this.sender = sender;
+		this.reciever = reciever;
 		this.content = content;
 		this.red = red;
-		this.user = user;
 	}
 
-	public String getUserSender() {
-		return userSender;
+	
+	
+	public String getSender() {
+		return sender;
 	}
 
-	public void setUserSender(String userSender) {
-		this.userSender = userSender;
+	public void setSender(String sender) {
+		this.sender = sender;
 	}
 
-	public String getUserReceiver() {
-		return userReceiver;
+	
+
+	public String getReciever() {
+		return reciever;
 	}
 
-	public void setUserReceiver(String userReceiver) {
-		this.userReceiver = userReceiver;
+	public void setReciever(String reciever) {
+		this.reciever = reciever;
 	}
 
 	public String getContent() {
@@ -58,14 +60,5 @@ public class Message implements Serializable {
 	public void setRed(Boolean red) {
 		this.red = red;
 	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
 	
 }
