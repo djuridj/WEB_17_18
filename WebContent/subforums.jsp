@@ -12,6 +12,10 @@
 <a href="logedIndex.jsp">USER PAGE</a>
 <a href="subforums.jsp">SUBFORUMS</a>
 
+<c:if test="${user.role == 'Admin'}">
+	<a href="users.jsp">List Users</a>
+</c:if>
+
 <p>Logged user: ${sessionScope.user.username}</p>
 <p>User role: ${sessionScope.user.role}</p>
 <p>Registration date: ${sessionScope.user.regDate}</p>
@@ -56,7 +60,17 @@
 	  			</form>
   			</td>
   			<td>
-			<a href="./DeleteSubforum?name1=${forum.value.name}" type="button">DELETE</a>
+			<a href="./DeleteSubforum?name1=${forum.value.name}">DELETE</a>
+  			</td>
+  			<td>
+  			<form name="changeSubforum" action="subforumContentChange.jsp">
+    			<input type="submit" name="changeButton" value="Change"></input>
+    			<input type="hidden" name="name" value="${forum.value.name}"></input>
+    			<input type="hidden" name="description" value="${forum.value.description}"></input>
+    			<input type="hidden" name="icon" value="${forum.value.icon}"></input>
+    			<input type="hidden" name="rules" value="${forum.value.rules}"></input>
+    			<input type="hidden" name="moderator" value="${forum.value.moderator}"></input>
+  			</form>
   			</td>
   			</c:if>
 		</tr>

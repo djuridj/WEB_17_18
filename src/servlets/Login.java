@@ -59,14 +59,13 @@ public class Login extends HttpServlet {
 	Serialization s = new Serialization();
 		
 	Hashtable<String, User> users = s.listUsers(path);
+	Hashtable<String, User> usrs = s.listUsers(path);
 	Hashtable<String, Subforum> sf = s.listSubforums(path);
 	Hashtable<String, Topic> tp = s.listTopics(path);
 	Hashtable<String, Comment> com = s.listComments(path);
 	Hashtable<String, FollowedSub> fs = s.listFollowed(path);
 	Hashtable<String, Message> mes = s.listMessages(path);
 	Hashtable<String, SavedTopic> stc = s.listSavedTopics(path);
-	
-	//session.setAttribute("pretragaProdavnicaSesija", prodavac);
 	
 		if(users.containsKey(username)){
 			User u = users.get(username);
@@ -77,7 +76,7 @@ public class Login extends HttpServlet {
 					
 					HttpSession session = request.getSession();
 					session.setAttribute("user", u);
-					session.setAttribute("allusers", users);
+					session.setAttribute("allusers", usrs);
 					session.setAttribute("subforum", sf);
 					session.setAttribute("topic", tp);
 					session.setAttribute("comment", com);

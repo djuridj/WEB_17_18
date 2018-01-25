@@ -70,12 +70,17 @@
     			<input type="hidden" name="sender" value="${param.username}"></input>
     			<input type="hidden" name="author" value="${com.value.author}"></input>
   			</form>
+  			</td>
+  			<td>
   			<form name="replyComment" action="commentCreate.jsp">
     			<input type="submit" name="replyButton" value="Reply"></input>
     			<input type="hidden" name="headline" value="${param.headline}"></input>
     			<input type="hidden" name="subforum" value="${param.subforum}"></input>
     			<input type="hidden" name="parent" value="${com.value.id}"></input>
 			</form>
+			</td>
+			<td>
+			<a href="./DeleteComment?id1=${com.value.id}">DELETE</a>
   			</td>
 		</tr>
 	</c:if>

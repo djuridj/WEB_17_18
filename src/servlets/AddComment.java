@@ -56,7 +56,14 @@ public class AddComment extends HttpServlet {
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		Date today = Calendar.getInstance().getTime();        
 		String date = df.format(today);
-		String parent = request.getParameter("parent");
+		String a = request.getParameter("parent");
+		int parent = 0;
+		if (!a.equals(""))
+			parent = Integer.parseInt(a);
+		else
+			parent = 0;
+
+		
 		String text = request.getParameter("text");
 		int positives = 0;
 		int negatives = 0;
@@ -64,7 +71,7 @@ public class AddComment extends HttpServlet {
 		HttpSession session = request.getSession();
 		Serialization s = new Serialization();
 		
-		Comment c = new Comment(id, topic,author,date,parent,text,positives,negatives);
+		Comment c = new Comment(id,topic,author,date,parent,text,positives,negatives);
 		
 		@SuppressWarnings("unchecked")
 		Hashtable<String, Comment> com = (Hashtable<String, Comment>) session.getAttribute("comment");

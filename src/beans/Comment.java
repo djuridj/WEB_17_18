@@ -10,7 +10,7 @@ public class Comment implements Serializable {
 	private String topic;
 	private String author;
 	private String date;
-	private String parent;
+	private int parent;
 	private String text;
 	private int postivies;
 	private int negatives;
@@ -20,7 +20,7 @@ public class Comment implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Comment(int id, String topic, String author, String date, String parent, String text, int postivies, int negatives) {
+	public Comment(int id, String topic, String author, String date, int parent, String text, int postivies, int negatives) {
 		super();
 		this.id = id;
 		this.topic = topic;
@@ -64,11 +64,13 @@ public class Comment implements Serializable {
 		this.date = date;
 	}
 
-	public String getParent() {
+	
+
+	public int getParent() {
 		return parent;
 	}
 
-	public void setParent(String parent) {
+	public void setParent(int parent) {
 		this.parent = parent;
 	}
 

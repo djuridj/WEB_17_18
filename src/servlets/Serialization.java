@@ -146,6 +146,7 @@ public class Serialization {
 		return subforums;
 	}
 	
+	@SuppressWarnings("unused")
 	public void deleteSubforum(String name,String path) throws IOException {
 		// TODO Auto-generated method stub
 
@@ -173,12 +174,10 @@ public class Serialization {
 					String rules = st.nextToken().trim();
 					String moderator = st.nextToken().trim();
 					
-					@SuppressWarnings("unused")
-					Subforum sf = new Subforum(names, description, icon, rules, moderator);
 					
-					if(names != name)
+					if(!names.equals(name))
 					{
-						pw.println(text);
+						pw.write(text + "\n");
 					}
 				}
 
@@ -196,6 +195,7 @@ public class Serialization {
 			}
 		}
 		pw.close();
+		reader.close();
 		
 		if (!file.delete()) {
 	        System.out.println("Could not delete file");
@@ -275,6 +275,70 @@ public class Serialization {
 		return topics;
 	}
 
+	@SuppressWarnings("unused")
+	public void deleteTopic(String headline,String path) throws IOException {
+		// TODO Auto-generated method stub
+
+		File file = new File(path+"\\topics.txt");
+		BufferedReader reader = null;
+	
+		
+		File tempFile = new File(path +"\\myTempFile1.txt");
+		
+		 PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+		 
+		
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String text = null;
+
+			while ((text = reader.readLine()) != null) {
+
+				StringTokenizer st = new StringTokenizer(text, "|");
+				while (st.hasMoreTokens()) {
+					
+					String subforum = st.nextToken().trim();
+					String headlines = st.nextToken().trim();
+					String type = st.nextToken().trim();
+					String author = st.nextToken().trim();
+					String date = st.nextToken().trim();
+					String content = st.nextToken().trim();
+					int likes = Integer.parseInt(st.nextToken().trim());
+					int dislikes = Integer.parseInt(st.nextToken().trim());
+					
+					
+					if(!headlines.equals(headline))
+					{
+						pw.write(text + "\n");
+					}
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+				}
+			} catch (IOException e) {
+			}
+		}
+		pw.close();
+		reader.close();
+		
+		if (!file.delete()) {
+	        System.out.println("Could not delete file");
+	        return;
+	      } 
+	      
+	      //Rename the new file to the filename the original file had.
+	      if (!tempFile.renameTo(file))
+	        System.out.println("Could not rename file");
+		
+	}
 	
 	//COMMENTS
 	
@@ -315,7 +379,7 @@ public class Serialization {
 					String topic = st.nextToken().trim();
 					String author = st.nextToken().trim();
 					String date = st.nextToken().trim();
-					String parent = st.nextToken().trim();
+					int parent = Integer.parseInt(st.nextToken().trim());
 					String textt = st.nextToken().trim();
 					int positives = Integer.parseInt(st.nextToken().trim());
 					int negatives = Integer.parseInt(st.nextToken().trim());
@@ -342,6 +406,72 @@ public class Serialization {
 		return comments;
 	}
 
+	
+	@SuppressWarnings("unused")
+	public void deleteComment(int id,String path) throws IOException {
+		// TODO Auto-generated method stub
+
+		File file = new File(path+"\\comments.txt");
+		BufferedReader reader = null;
+	
+		
+		File tempFile = new File(path +"\\myTempFile3.txt");
+		
+		 PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+		 
+		
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String text = null;
+
+			while ((text = reader.readLine()) != null) {
+
+				StringTokenizer st = new StringTokenizer(text, "|");
+				while (st.hasMoreTokens()) {
+					
+					int ids = Integer.parseInt(st.nextToken().trim());
+					String topic = st.nextToken().trim();
+					String author = st.nextToken().trim();
+					String date = st.nextToken().trim();
+					int parent = Integer.parseInt(st.nextToken().trim());
+					String textt = st.nextToken().trim();
+					int positives = Integer.parseInt(st.nextToken().trim());
+					int negatives = Integer.parseInt(st.nextToken().trim());
+					
+					
+					if(!(ids==id))
+					{
+						pw.write(text + "\n");
+					}
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+				}
+			} catch (IOException e) {
+			}
+		}
+		pw.close();
+		reader.close();
+		
+		if (!file.delete()) {
+	        System.out.println("Could not delete file");
+	        return;
+	      } 
+	      
+	      //Rename the new file to the filename the original file had.
+	      if (!tempFile.renameTo(file))
+	        System.out.println("Could not rename file");
+		
+	}
+	
 	
 	public Hashtable<String, User> getUsers() {
 		return users;

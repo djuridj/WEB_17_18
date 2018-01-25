@@ -26,6 +26,16 @@ public class Subforum implements Serializable {
 		this.rules = rules;
 		this.moderator = moderator;
 	}
+	
+	
+
+	public Subforum(String name, String description, String icon, String rules) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.icon = icon;
+		this.rules = rules;
+	}
 
 	public String getName() {
 		return name;

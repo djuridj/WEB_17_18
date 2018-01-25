@@ -9,8 +9,12 @@
 </head>
 <body>
 
+<a href="logedIndex.jsp">USER PAGE</a>
 <a href="subforums.jsp">SUBFORUMS</a>
-<a href="users.jsp">Send Message</a>
+
+<c:if test="${user.role == 'Admin'}">
+	<a href="users.jsp">List Users</a>
+</c:if>
 
 <p>Logged user: ${sessionScope.user.username}</p>
 <p>User role: ${sessionScope.user.role}</p>

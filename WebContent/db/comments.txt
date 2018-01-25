@@ -1,5 +1,1 @@
-0|topic|author|date|parent|text|0|0|
-
-17|123|user|23/01/2018|null|AAAAAAAAAA|0|0|
-1015|123|user|23/01/2018|null|zasto ovako sve|0|0|
-209|123|user|23/01/2018|17|ertsdfg|0|0|
+0|topic|author|date|0|text|0|0|
