@@ -87,6 +87,19 @@
   			<td>
 			<a href="./DeleteTopic?headline1=${top.value.headline}">DELETE</a>
   			</td>
+  			<td>
+			<form name="changeTopic" action="topicChange.jsp">
+    			<input type="submit" name="changeTopicButton" value="Change Topic"></input>
+    			<input type="hidden" name="subforum" value="${top.value.subforum}"></input>
+    			<input type="hidden" name="headline" value="${top.value.headline}"></input>
+    			<input type="hidden" name="type" value="${top.value.type}"></input>
+    			<input type="hidden" name="author" value="${top.value.author}"></input>
+    			<input type="hidden" name="date" value="${top.value.date}"></input>
+    			<input type="hidden" name="content" value="${top.value.content}"></input>
+    			<input type="hidden" name="likes" value="${top.value.likes}"></input>
+    			<input type="hidden" name="dislikes" value="${top.value.dislikes}"></input>
+  			</form>
+  			</td>
 		</tr>
 		</c:if>
 	</c:forEach>

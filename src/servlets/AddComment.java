@@ -67,11 +67,12 @@ public class AddComment extends HttpServlet {
 		String text = request.getParameter("text");
 		int positives = 0;
 		int negatives = 0;
+		Boolean changed = false;
 		
 		HttpSession session = request.getSession();
 		Serialization s = new Serialization();
 		
-		Comment c = new Comment(id,topic,author,date,parent,text,positives,negatives);
+		Comment c = new Comment(id,topic,author,date,parent,text,positives,negatives,changed);
 		
 		@SuppressWarnings("unchecked")
 		Hashtable<String, Comment> com = (Hashtable<String, Comment>) session.getAttribute("comment");

@@ -11,20 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.Subforum;
-import beans.User;
+import beans.Topic;
 
 /**
- * Servlet implementation class UpdateSubforum
+ * Servlet implementation class UpdateTopic
  */
-@WebServlet("/UpdateSubforum")
-public class UpdateSubforum extends HttpServlet {
+@WebServlet("/UpdateTopic")
+public class UpdateTopic extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateSubforum() {
+    public UpdateTopic() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,7 +34,8 @@ public class UpdateSubforum extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -43,44 +43,41 @@ public class UpdateSubforum extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-				
-		//Subforum subforum = (Subforum)session.getAttribute("changesubforum"); 
+
+		String subforum = request.getParameter("subforum");
+		String headline = request.getParameter("headline");
+		String type = request.getParameter("type");
+		String author = request.getParameter("author");
+		String date = request.getParameter("date");
+		String content = request.getParameter("content");
+		int likes = Integer.parseInt(request.getParameter("likes"));
+		int dislikes = Integer.parseInt(request.getParameter("dislikes"));
 		
-		String name = request.getParameter("name");
-		String description = request.getParameter("description");
-		String icon = request.getParameter("icon");
-		String rules = request.getParameter("rules");
-		
-		User u = (User)request.getSession().getAttribute("user");
-		String moderator = u.getUsername();
-		
-		Subforum sf = new Subforum(name, description, icon, rules, moderator);
+		Topic to = new Topic(subforum, headline, type, author, date, content, likes, dislikes);
 		
 		Serialization s = new Serialization();
 		
 		
-		Hashtable<String, Subforum> sub = s.listSubforums(path);
+		Hashtable<String, Topic> top = s.listTopics(path);
 		
 		String idBrisanje = "";
 		
-		Set<String> keys = sub.keySet();
+		Set<String> keys = top.keySet();
 		for (String kor : keys) {
-			if (kor.equals(sf.getName())) {
-				idBrisanje = kor;
-				
+			if (kor.equals(to.getHeadline())) {
+				idBrisanje = kor;	
 			}
 		}
 		
-		s.deleteSubforum(idBrisanje, path);
-		sub.remove(idBrisanje);
+		s.deleteTopic(idBrisanje, path);
+		top.remove(idBrisanje);
 		
-		s.addForum(sf, path);
-		sub.put(idBrisanje, sf);
+		s.addTopic(to, path);
+		top.put(idBrisanje, to);
 		
-		session.setAttribute("subforum", sub);
+		session.setAttribute("topic", top);
 		
 		response.sendRedirect("subforums.jsp");
-		
 	}
 
 }

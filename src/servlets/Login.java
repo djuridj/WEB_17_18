@@ -62,7 +62,7 @@ public class Login extends HttpServlet {
 	Hashtable<String, User> usrs = s.listUsers(path);
 	Hashtable<String, Subforum> sf = s.listSubforums(path);
 	Hashtable<String, Topic> tp = s.listTopics(path);
-	Hashtable<String, Comment> com = s.listComments(path);
+	Hashtable<Integer, Comment> com = s.listComments(path);
 	Hashtable<String, FollowedSub> fs = s.listFollowed(path);
 	Hashtable<String, Message> mes = s.listMessages(path);
 	Hashtable<String, SavedTopic> stc = s.listSavedTopics(path);

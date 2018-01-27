@@ -11,31 +11,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.Subforum;
 import beans.User;
 
 /**
- * Servlet implementation class UpdateSubforum
+ * Servlet implementation class ChangeRole
  */
-@WebServlet("/UpdateSubforum")
-public class UpdateSubforum extends HttpServlet {
+@WebServlet("/ChangeRole")
+public class ChangeRole extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateSubforum() {
+    public ChangeRole() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-    String path = servlets.Registration.path;
     
+    String path = servlets.Registration.path;
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -43,44 +43,43 @@ public class UpdateSubforum extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-				
-		//Subforum subforum = (Subforum)session.getAttribute("changesubforum"); 
 		
-		String name = request.getParameter("name");
-		String description = request.getParameter("description");
-		String icon = request.getParameter("icon");
-		String rules = request.getParameter("rules");
 		
-		User u = (User)request.getSession().getAttribute("user");
-		String moderator = u.getUsername();
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname");
+		String telephone = request.getParameter("telephone");
+		String email = request.getParameter("email");
+		String regDate = request.getParameter("regDate");
+		String role = request.getParameter("role");
 		
-		Subforum sf = new Subforum(name, description, icon, rules, moderator);
+		User u = new User(username, password, firstname, lastname, telephone, email, regDate, role);
 		
 		Serialization s = new Serialization();
 		
 		
-		Hashtable<String, Subforum> sub = s.listSubforums(path);
+		Hashtable<String, User> usr = s.listUsers(path);
 		
 		String idBrisanje = "";
 		
-		Set<String> keys = sub.keySet();
+		Set<String> keys = usr.keySet();
 		for (String kor : keys) {
-			if (kor.equals(sf.getName())) {
+			if (kor.equals(u.getUsername())) {
 				idBrisanje = kor;
 				
 			}
 		}
 		
-		s.deleteSubforum(idBrisanje, path);
-		sub.remove(idBrisanje);
+		s.deleteUser(idBrisanje, path);
+		usr.remove(idBrisanje);
 		
-		s.addForum(sf, path);
-		sub.put(idBrisanje, sf);
+		s.addUser(u, path);
+		usr.put(idBrisanje, u);
 		
-		session.setAttribute("subforum", sub);
+		session.setAttribute("user", u);
 		
-		response.sendRedirect("subforums.jsp");
-		
+		response.sendRedirect("users.jsp");
 	}
 
 }

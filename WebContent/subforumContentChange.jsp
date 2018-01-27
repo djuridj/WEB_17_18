@@ -5,18 +5,38 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Update subforum</title>
 </head>
 <body>
+
+<h2>Update subforum:</h2>	
+<form  action="UpdateSubforum" method="post">
+	<table title="Enter updated subofrum data" align="center" >
+	<tr>
+		<td>Name</td> <td><input	type="text" name="name" value="${param.name}" readonly></td>
+	</tr>
 	
-	<p>Update subforum</p>
-	<p><input	type="text" name="name" value="${param.name}"></p>
-	<p><input	type="text" name="name" value="${param.description}"></p>
-	<p><input	type="text" name="name" value="${param.icon}"></p>
-	<p><input	type="text" name="name" value="${param.rules}"></p>
-	<p><input	type="text" name="name" value="${param.moderator}"></p>
+	<tr>
+		<td>Description</td> <td><input	type="text" name="description" value="${param.description}"></td>
+	</tr>
 	
-	<a href="./ChangeTopic?name1=${param.name}">UPDATE</a>
+	<tr>
+		<td>Icon</td> <td><input	type="text" name="icon" value="${param.icon}"></td>
+	</tr>
+	
+	<tr>
+		<td>Rules</td> <td><input	type="text" name="rules" value="${param.rules}"></td>
+	<tr>
+	
+	<tr>
+		<td>Moderator</td> <td><input	type="text" name="moderator" value="${param.moderator}" readonly></td>
+	</tr>
+	
+	<tr>
+		<td><input type="submit" value="Update"></td>
+	</tr>
+	</table>
+</form>
 
 </body>
 </html>

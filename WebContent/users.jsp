@@ -32,21 +32,31 @@
 				<select name="role">
 							<option selected="selected">${usr.value.role}</option>
 							<c:if test="${usr.value.role == 'Admin'}">
-								<option value="role">Moderator</option>
-								<option value="role">User</option>
+								<option value="${usr.value.role}">Moderator</option>
+								<option value="${usr.value.role}">User</option>
 							</c:if>
 							<c:if test="${usr.value.role == 'Moderator'}">
-								<option value="role">Admin</option>
-								<option value="role">User</option>
+								<option value="${usr.value.role}">Admin</option>
+								<option value="${usr.value.role}">User</option>
 							</c:if>
 							<c:if test="${usr.value.role == 'User'}">
-								<option value="role">Admin</option>
-								<option value="role">Moderator</option>
+								<option value="${usr.value.role}">Admin</option>
+								<option value="${usr.value.role}">Moderator</option>
 							</c:if>
 				</select>
 			</td>
 			<td>
-				<a href="">Change role</a>
+			<form name="changeRole" method="POST" action="ChangeRole">
+    			<input type="submit" name="changeRoleButton" value="Change Role"></input>
+    			<input type="hidden" name="username" value="${usr.value.username}"></input>
+    			<input type="hidden" name="password" value="${usr.value.password}"></input>
+    			<input type="hidden" name="firstname" value="${usr.value.firstname}"></input>
+    			<input type="hidden" name="lastname" value="${usr.value.lastname}"></input>
+    			<input type="hidden" name="telephone" value="${usr.value.telephone}"></input>
+    			<input type="hidden" name="email" value="${usr.value.email}"></input>
+    			<input type="hidden" name="regDate" value="${usr.value.regDate}"></input>
+    			<input type="hidden" name="role" value="${usr.value.role}"></input>
+  			</form>
 			</td>
 		</tr>
 	</c:forEach>

@@ -12,7 +12,7 @@ public class Comment implements Serializable {
 	private String date;
 	private int parent;
 	private String text;
-	private int postivies;
+	private int positives;
 	private int negatives;
 	private boolean changed;
 	
@@ -20,7 +20,7 @@ public class Comment implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Comment(int id, String topic, String author, String date, int parent, String text, int postivies, int negatives) {
+	public Comment(int id, String topic, String author, String date, int parent, String text, int positives, int negatives) {
 		super();
 		this.id = id;
 		this.topic = topic;
@@ -28,8 +28,21 @@ public class Comment implements Serializable {
 		this.date = date;
 		this.parent = parent;
 		this.text = text;
-		this.postivies = postivies;
+		this.positives = positives;
 		this.negatives = negatives;
+	}
+	
+	public Comment(int id, String topic, String author, String date, int parent, String text, int postivies, int negatives, boolean changed) {
+		super();
+		this.id = id;
+		this.topic = topic;
+		this.author = author;
+		this.date = date;
+		this.parent = parent;
+		this.text = text;
+		this.positives = postivies;
+		this.negatives = negatives;
+		this.changed = changed;
 	}
 	
 	public int getId() {
@@ -82,12 +95,12 @@ public class Comment implements Serializable {
 		this.text = text;
 	}
 
-	public int getPostivies() {
-		return postivies;
+	public int getPositives() {
+		return positives;
 	}
 
-	public void setPostivies(int postivies) {
-		this.postivies = postivies;
+	public void setPositives(int positives) {
+		this.positives = positives;
 	}
 
 	public int getNegatives() {

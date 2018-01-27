@@ -16,14 +16,16 @@
 <h2>New comment</h2>
 
 
-	<form align="center" name = "addComment" method="POST" action="AddComment" align="center"">
+	<form name = "addComment" method="POST" action="AddComment">
 		<table title="Enter new comment data" align="center" >
 		
 		<tr>
-		<td align="right">Text:  </td><td><input	type="text" name="text"></br></td>
+		<td align="right">Text:  </td><td><input	type="text" name="text"></td>
 		</tr>
 		 
+		 <tr>
 		 <td colspan="2" align="left"><input type = "submit" value="AddComment"></td>
+		 </tr>
 		 
 		 </table>
 		 

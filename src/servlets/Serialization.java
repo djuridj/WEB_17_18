@@ -86,6 +86,71 @@ public class Serialization {
 		return users;
 	}
 	
+	@SuppressWarnings("unused")
+	public void deleteUser(String username,String path) throws IOException {
+		// TODO Auto-generated method stub
+
+		File file = new File(path+"\\users.txt");
+		BufferedReader reader = null;
+	
+		
+		File tempFile = new File(path +"\\myTempFile4.txt");
+		
+		 PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+		 
+		
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String text = null;
+
+			while ((text = reader.readLine()) != null) {
+
+				StringTokenizer st = new StringTokenizer(text, "|");
+				while (st.hasMoreTokens()) {
+					
+					String usernames = st.nextToken().trim();
+					String password = st.nextToken().trim();
+					String firstname = st.nextToken().trim();
+					String lastname = st.nextToken().trim();
+					String telephone = st.nextToken().trim();
+					String email = st.nextToken().trim();
+					String regDate = st.nextToken().trim();
+					String rule = st.nextToken().trim();
+					
+					
+					if(!usernames.equals(username))
+					{
+						pw.write(text + "\n");
+					}
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+				}
+			} catch (IOException e) {
+			}
+		}
+		pw.close();
+		reader.close();
+		
+		if (!file.delete()) {
+	        System.out.println("Could not delete file");
+	        return;
+	      } 
+	      
+	      //Rename the new file to the filename the original file had.
+	      if (!tempFile.renameTo(file))
+	        System.out.println("Could not rename file");
+		
+	}
+	
 	//SUBFORUM
 	
 	public void addForum(Subforum subforum, String path) throws IOException {
@@ -207,6 +272,7 @@ public class Serialization {
 	        System.out.println("Could not rename file");
 		
 	}
+
 	
 	//TOPIC
 	public void addTopic(Topic topic, String path) throws IOException {
@@ -353,14 +419,15 @@ public class Serialization {
 		sb.append(comment.getDate() + "|");
 		sb.append(comment.getParent() + "|");
 		sb.append(comment.getText() + "|");
-		sb.append(comment.getPostivies() + "|");
+		sb.append(comment.getPositives() + "|");
 		sb.append(comment.getNegatives() + "|");
+		sb.append(comment.isChanged() + "|");
 		fw.write(sb.toString());
 		fw.close();
 	}
 	
-	public Hashtable<String, Comment> listComments(String path) {		
-		Hashtable<String, Comment> comments = new Hashtable<String, Comment>();
+	public Hashtable<Integer, Comment> listComments(String path) {		
+		Hashtable<Integer, Comment> comments = new Hashtable<Integer, Comment>();
 		
 
 		File file = new File(path + "\\comments.txt");
@@ -383,10 +450,11 @@ public class Serialization {
 					String textt = st.nextToken().trim();
 					int positives = Integer.parseInt(st.nextToken().trim());
 					int negatives = Integer.parseInt(st.nextToken().trim());
+					boolean changed = Boolean.parseBoolean(st.nextToken().trim());
 					
-					Comment c = new Comment(id, topic, author, date, parent, textt, positives, negatives);
+					Comment c = new Comment(id, topic, author, date, parent, textt, positives, negatives,changed);
 					
-					comments.put(textt, c);
+					comments.put(id, c);
 				}
 
 			}
@@ -437,6 +505,7 @@ public class Serialization {
 					String textt = st.nextToken().trim();
 					int positives = Integer.parseInt(st.nextToken().trim());
 					int negatives = Integer.parseInt(st.nextToken().trim());
+					boolean changed = Boolean.parseBoolean(st.nextToken().trim());
 					
 					
 					if(!(ids==id))
@@ -601,6 +670,69 @@ public class Serialization {
 		return fs;
 	}
 	
+	@SuppressWarnings("unused")
+	public void unfollowSubforum(String name,String path) throws IOException {
+		// TODO Auto-generated method stub
+
+		File file = new File(path+"\\followedsubs.txt");
+		BufferedReader reader = null;
+	
+		
+		File tempFile = new File(path +"\\myTempFile6.txt");
+		
+		 PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+		 
+		
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String text = null;
+
+			while ((text = reader.readLine()) != null) {
+
+				StringTokenizer st = new StringTokenizer(text, "|");
+				while (st.hasMoreTokens()) {
+					
+					String names = st.nextToken().trim();
+					String description = st.nextToken().trim();
+					String icon = st.nextToken().trim();
+					String rules = st.nextToken().trim();
+					String moderator = st.nextToken().trim();
+					String followed = st.nextToken().trim();
+					
+					
+					if(!names.equals(name))
+					{
+						pw.write(text + "\n");
+					}
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+				}
+			} catch (IOException e) {
+			}
+		}
+		pw.close();
+		reader.close();
+		
+		if (!file.delete()) {
+	        System.out.println("Could not delete file");
+	        return;
+	      } 
+	      
+	      //Rename the new file to the filename the original file had.
+	      if (!tempFile.renameTo(file))
+	        System.out.println("Could not rename file");
+		
+	}
+	
 	public void addSavedTopic(SavedTopic st, String path) throws IOException {
 		FileWriter fw = new FileWriter(path + "/savedtopics.txt", true);
 		StringBuilder sb = new StringBuilder();
@@ -662,5 +794,70 @@ public class Serialization {
 
 		return stc;
 	}
+	
+	@SuppressWarnings("unused")
+	public void unsaveTopic(String headline,String path) throws IOException {
+		// TODO Auto-generated method stub
+
+		File file = new File(path+"\\savedtopics.txt");
+		BufferedReader reader = null;
+	
+		
+		File tempFile = new File(path +"\\myTempFile7.txt");
+		
+		 PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+		 
+		
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String text = null;
+
+			while ((text = reader.readLine()) != null) {
+
+				StringTokenizer st = new StringTokenizer(text, "|");
+				while (st.hasMoreTokens()) {
+					
+					String subforum = st.nextToken().trim();
+					String headlines = st.nextToken().trim();
+					String type = st.nextToken().trim();
+					String author = st.nextToken().trim();
+					String date = st.nextToken().trim();
+					String content = st.nextToken().trim();
+					String follower = st.nextToken().trim();
+					
+					if(!headlines.equals(headline))
+					{
+						pw.write(text + "\n");
+					}
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+				}
+			} catch (IOException e) {
+			}
+		}
+		pw.close();
+		reader.close();
+		
+		if (!file.delete()) {
+	        System.out.println("Could not delete file");
+	        return;
+	      } 
+	      
+	      //Rename the new file to the filename the original file had.
+	      if (!tempFile.renameTo(file))
+	        System.out.println("Could not rename file");
+		
+	}
+	
+	
 	
 }

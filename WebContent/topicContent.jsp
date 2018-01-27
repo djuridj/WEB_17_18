@@ -49,20 +49,26 @@
 <h3>Comments of this topic</h3>
 <table border="1">
 		<tr bgcolor="lightgrey">
+			<th width="20%">Positives</th>
+			<th width="20%">Negatives</th>
 			<th width="20%">Topic</th>
 			<th width="20%">Author</th>
 			<th width="20%">Date</th>
 			<th width="20%">Parent</th>
-			<th width="20%">Text</th>		
+			<th width="20%">Text</th>
+			<th width="20%">Changed</th>		
 		</tr>
 	<c:forEach items="${comment}" var="com">
 	<c:if test="${ param.headline == com.value.topic}">
 		<tr>
+			<td align="center">${com.value.positives}</td>
+			<td align="center">${com.value.negatives}</td>
 			<td align="center">${com.value.topic}</td>
 			<td align="center">${com.value.author}</td>
 			<td align="center">${com.value.date}</td>
 			<td align="center">${com.value.parent}</td>
 			<td align="center">${com.value.text}</td>
+			<td align="center">${com.value.changed}</td>
 
   			<td> 
 			<form name="addMessage" action="messageCreate.jsp">
@@ -81,6 +87,20 @@
 			</td>
 			<td>
 			<a href="./DeleteComment?id1=${com.value.id}">DELETE</a>
+  			</td>
+  			<td> 
+			<form name="updateComment" action="commentChange.jsp">
+    			<input type="submit" name="updateComment" value="Edit"></input>
+    			<input type="hidden" name="id" value="${com.value.id}"></input>
+    			<input type="hidden" name="topic" value="${com.value.topic}"></input>
+    			<input type="hidden" name="author" value="${com.value.author}"></input>
+    			<input type="hidden" name="date" value="${com.value.date}"></input>
+    			<input type="hidden" name="parent" value="${com.value.parent}"></input>
+    			<input type="hidden" name="text" value="${com.value.text}"></input>
+    			<input type="hidden" name=positives value="${com.value.positives}"></input>
+    			<input type="hidden" name=negatives value="${com.value.negatives}"></input>
+    			<input type="hidden" name=changed value="${com.value.changed}"></input>
+  			</form>
   			</td>
 		</tr>
 	</c:if>

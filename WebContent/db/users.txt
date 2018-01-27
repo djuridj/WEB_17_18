@@ -1,6 +1,5 @@
-username|password|firstname|lastname|telephone|email|regDate|role|
-
-user|user|Usro|Usric|345654|asdfgghh|23/01/2018|User|
 admin|admin|Admin|Adminic|345654|asdfgghh|23/01/2018|Admin|
 mod|mod|Moder|Moderic|345654|asdfgghh|23/01/2018|Moderator|
+user|user|Usro|Usric|345654|asdfgghh|23/01/2018|User|
+
 u|u|Usro|Usric|345654|asdfgghh|23/01/2018|User|

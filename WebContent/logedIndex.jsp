@@ -51,7 +51,7 @@
   			</form>
   			</td>
   			<td>
-				<a href="./DeleteSubforum?name1=${forum.value.name}" type="button">Unfollow</a>
+				<a href="./UnfollowSubforum?name1=${fforum.value.name}" type="button">Unfollow</a>
   			</td>
 		</tr>
 		</c:if>
@@ -87,6 +87,9 @@
     			<input type="hidden" name="content" value="${stop.value.content}"></input>
     			<input type="hidden" name="date" value="${stop.value.date}"></input>
   			</form>
+  			</td>
+  			<td>
+				<a href="./UnsaveTopic?headline1=${stop.value.headline}" type="button">Unsave</a>
   			</td>
 		</tr>
 		</c:if>
