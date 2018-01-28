@@ -72,6 +72,12 @@
     			<input type="hidden" name="moderator" value="${forum.value.moderator}"></input>
   			</form>
   			</td>
+  			<td>
+  			<form name="complainOnSub" action="subforumComplain.jsp">
+    			<input type="submit" name="complainOnSubButton" value="Complain"></input>
+    			<input type="hidden" name="name" value="${forum.value.name}"></input>
+  			</form>
+  			</td>
   			</c:if>
 		</tr>
 	</c:forEach>

@@ -11,11 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.Comment;
+import beans.CommentComplaint;
 import beans.FollowedSub;
 import beans.Message;
 import beans.SavedTopic;
 import beans.Subforum;
+import beans.SubforumComplaint;
 import beans.Topic;
+import beans.TopicComplaint;
 import beans.User;
 
 public class Login extends HttpServlet {
@@ -66,6 +69,9 @@ public class Login extends HttpServlet {
 	Hashtable<String, FollowedSub> fs = s.listFollowed(path);
 	Hashtable<String, Message> mes = s.listMessages(path);
 	Hashtable<String, SavedTopic> stc = s.listSavedTopics(path);
+	Hashtable<String, SubforumComplaint> sfc = s.listSubforumComplaints(path);
+	Hashtable<String, TopicComplaint> tpc = s.listSTopicComplaints(path);
+	Hashtable<String, CommentComplaint> cmc = s.listCommentComplaints(path);
 	
 		if(users.containsKey(username)){
 			User u = users.get(username);
@@ -83,6 +89,9 @@ public class Login extends HttpServlet {
 					session.setAttribute("followedsubforum", fs);
 					session.setAttribute("message", mes);
 					session.setAttribute("savedtopic", stc);
+					session.setAttribute("subforumcomplaint", sfc);
+					session.setAttribute("topiccomplaint", tpc);
+					session.setAttribute("commentcomplaint", cmc);
 					response.sendRedirect("logedIndex.jsp");
 					return;
 

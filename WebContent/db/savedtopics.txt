@@ -1,3 +1,2 @@
 eo|123|tip|djuric|22/01/2018|zzz|user|
-a|1111|asdfg|user|25/01/2018|zxcv|user|
 a2|asddd|aaa|djuric|22/01/2018|zzz|admin|

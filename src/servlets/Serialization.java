@@ -11,11 +11,14 @@ import java.util.Hashtable;
 import java.util.StringTokenizer;
 
 import beans.Comment;
+import beans.CommentComplaint;
 import beans.FollowedSub;
 import beans.Message;
 import beans.SavedTopic;
 import beans.Subforum;
+import beans.SubforumComplaint;
 import beans.Topic;
+import beans.TopicComplaint;
 import beans.User;
 
 public class Serialization {
@@ -858,6 +861,181 @@ public class Serialization {
 		
 	}
 	
+	public void addSubforumComplaint(SubforumComplaint subforumsomplaint, String path) throws IOException {
+		FileWriter fw = new FileWriter(path + "/subforumcomplaints.txt", true);
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("\n");
+		sb.append(subforumsomplaint.getText() + "|");
+		sb.append(subforumsomplaint.getDate() + "|");
+		sb.append(subforumsomplaint.getSubforum() + "|");
+		sb.append(subforumsomplaint.getAuthor() + "|");
+		sb.append(subforumsomplaint.getAdmin() + "|");
+		fw.write(sb.toString());
+		fw.close();
+	}
 	
+	public Hashtable<String, SubforumComplaint> listSubforumComplaints(String path) {		
+		Hashtable<String, SubforumComplaint> scs = new Hashtable<String, SubforumComplaint>();
+		
+
+		File file = new File(path + "\\subforumcomplaints.txt");
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String text = null;
+
+			while ((text = reader.readLine()) != null) {
+
+				StringTokenizer st = new StringTokenizer(text, "|");
+				
+				while (st.hasMoreTokens()) {
+					
+					String textt = st.nextToken().trim();
+					String date = st.nextToken().trim();
+					String subforum = st.nextToken().trim();
+					String author = st.nextToken().trim();
+					String admin = st.nextToken().trim();
+					
+					SubforumComplaint sc = new SubforumComplaint(textt, date, subforum, author, admin);
+					
+					scs.put(textt, sc);
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+				}
+			} catch (IOException e) {
+			}
+		}
+
+		return scs;
+	}
 	
+	public void addTopicComplaint(TopicComplaint topiccomplaint, String path) throws IOException {
+		FileWriter fw = new FileWriter(path + "/topiccomplaints.txt", true);
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("\n");
+		sb.append(topiccomplaint.getText() + "|");
+		sb.append(topiccomplaint.getDate() + "|");
+		sb.append(topiccomplaint.getTopic() + "|");
+		sb.append(topiccomplaint.getAuthor() + "|");
+		sb.append(topiccomplaint.getAdmin() + "|");
+		sb.append(topiccomplaint.getModerator() + "|");
+		fw.write(sb.toString());
+		fw.close();
+	}
+	
+	public Hashtable<String, TopicComplaint> listSTopicComplaints(String path) {		
+		Hashtable<String, TopicComplaint> tcs = new Hashtable<String, TopicComplaint>();
+		
+
+		File file = new File(path + "\\topiccomplaints.txt");
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String text = null;
+
+			while ((text = reader.readLine()) != null) {
+
+				StringTokenizer st = new StringTokenizer(text, "|");
+				
+				while (st.hasMoreTokens()) {
+					
+					String textt = st.nextToken().trim();
+					String date = st.nextToken().trim();
+					String topic = st.nextToken().trim();
+					String author = st.nextToken().trim();
+					String admin = st.nextToken().trim();
+					String moderator = st.nextToken().trim();
+					
+					TopicComplaint tc = new TopicComplaint(textt,date,topic,author,admin,moderator);
+					
+					tcs.put(textt, tc);
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+				}
+			} catch (IOException e) {
+			}
+		}
+
+		return tcs;
+	}
+	
+	public void addCommentComplaint(CommentComplaint commentcomplaint, String path) throws IOException {
+		FileWriter fw = new FileWriter(path + "/commentcomplaints.txt", true);
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("\n");
+		sb.append(commentcomplaint.getText() + "|");
+		sb.append(commentcomplaint.getDate() + "|");
+		sb.append(commentcomplaint.getComment() + "|");
+		sb.append(commentcomplaint.getAuthor() + "|");
+		sb.append(commentcomplaint.getAdmin() + "|");
+		sb.append(commentcomplaint.getModerator() + "|");
+		fw.write(sb.toString());
+		fw.close();
+	}
+	
+	public Hashtable<String, CommentComplaint> listCommentComplaints(String path) {		
+		Hashtable<String, CommentComplaint> ccs = new Hashtable<String, CommentComplaint>();
+		
+
+		File file = new File(path + "\\commentcomplaints.txt");
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String text = null;
+
+			while ((text = reader.readLine()) != null) {
+
+				StringTokenizer st = new StringTokenizer(text, "|");
+				
+				while (st.hasMoreTokens()) {
+					
+					String textt = st.nextToken().trim();
+					String date = st.nextToken().trim();
+					int comment = Integer.parseInt(st.nextToken().trim());
+					String author = st.nextToken().trim();
+					String admin = st.nextToken().trim();
+					String moderator = st.nextToken().trim();
+					
+					CommentComplaint cc = new CommentComplaint(textt,date,comment,author,admin,moderator);
+					
+					ccs.put(textt, cc);
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+				}
+			} catch (IOException e) {
+			}
+		}
+
+		return ccs;
+	}
 }

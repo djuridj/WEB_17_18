@@ -113,8 +113,73 @@
     			<input type="hidden" name="sender" value="${user.username}"></input>
     			<input type="hidden" name="author" value="${mes.value.sender}"></input>
   			</form>
+  			</td>
 		</tr>
 		</c:if>
+	</c:forEach>
+</table>
+
+<c:if test="${user.role == 'Admin'}">
+<h3>Complaints on subforums</h3>
+<table border="1">
+		<tr bgcolor="lightgrey">
+			<th width="20%">Author</th>
+			<th width="20%">Date</th>
+			<th width="20%">Subforum</th>
+			<th width="20%">Text</th>			
+		</tr>
+	<c:forEach items="${subforumcomplaint}" var="sfc">
+		<tr>
+			<td align="center">${sfc.value.author}</td>
+			<td align="center">${sfc.value.date}</td>
+			<td align="center">${sfc.value.subforum}</td>
+			<td align="center">${sfc.value.text}</td>
+		</tr>
+	</c:forEach>
+</table>
+</c:if>
+
+<h3>Complaints on topics</h3>
+<table border="1">
+		<tr bgcolor="lightgrey">
+			<th width="20%">Author</th>
+			<th width="20%">Date</th>
+			<th width="20%">Topic</th>
+			<th width="20%">Moderator</th>
+			<th width="20%">Text</th>			
+		</tr>
+	<c:forEach items="${topiccomplaint}" var="tpc">
+	<c:if test="${user.role == 'Admin' || user.username == tpc.value.moderator}">
+		<tr>
+			<td align="center">${tpc.value.author}</td>
+			<td align="center">${tpc.value.date}</td>
+			<td align="center">${tpc.value.topic}</td>
+			<td align="center">${tpc.value.moderator}</td>
+			<td align="center">${tpc.value.text}</td>
+		</tr>
+	</c:if>
+	</c:forEach>
+</table>
+
+<h3>Complaints on comments</h3>
+<table border="1">
+		<tr bgcolor="lightgrey">
+			<th width="20%">Author</th>
+			<th width="20%">Date</th>
+			<th width="20%">Comment</th>
+			<th width="20%">Moderator</th>
+			<th width="20%">Text</th>			
+		</tr>
+	<c:forEach items="${commentcomplaint}" var="cmc">
+	<c:if test="${user.role == 'Admin' || user.username == cmc.value.moderator}">
+		<tr>
+			<td align="center">${cmc.value.author}</td>
+			<td align="center">${cmc.value.date}</td>
+			<td align="center">${cmc.value.comment}</td>
+			<td align="center">${cmc.value.moderator}</td>
+			<td align="center">${cmc.value.text}</td>
+		</tr>
+	</c:if>
 	</c:forEach>
 </table>
 

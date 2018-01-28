@@ -14,7 +14,8 @@
 
 <p>Logged user: ${sessionScope.user.username}</p>
 <p>User role: ${sessionScope.user.role}</p>
-<p>Subofrum: ${param.subforum}</p>
+<p>Subforum: ${param.subforum}</p>
+<p>Moderator of Subforum: ${param.moderator}</p>
 
 	<form>
     <h3>Topic Details:</h3>
@@ -100,6 +101,13 @@
     			<input type="hidden" name=positives value="${com.value.positives}"></input>
     			<input type="hidden" name=negatives value="${com.value.negatives}"></input>
     			<input type="hidden" name=changed value="${com.value.changed}"></input>
+  			</form>
+  			</td>
+  			<td>
+  			<form name="complainOnComment" action="commentComplain.jsp">
+    			<input type="submit" name="complainOnCommentButton" value="Complain"></input>
+    			<input type="hidden" name="comment" value="${com.value.id}"></input>
+    			<input type="hidden" name="moderator" value="${param.moderator}"></input>
   			</form>
   			</td>
 		</tr>

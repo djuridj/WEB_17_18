@@ -70,6 +70,7 @@
     			<input type="hidden" name="author" value="${top.value.author}"></input>
     			<input type="hidden" name="content" value="${top.value.content}"></input>
     			<input type="hidden" name="date" value="${top.value.date}"></input>
+    			<input type="hidden" name="moderator" value="${param.moderator}"></input>
   			</form>
   			</td>
   			<td>
@@ -98,6 +99,13 @@
     			<input type="hidden" name="content" value="${top.value.content}"></input>
     			<input type="hidden" name="likes" value="${top.value.likes}"></input>
     			<input type="hidden" name="dislikes" value="${top.value.dislikes}"></input>
+  			</form>
+  			</td>
+  			<td>
+  			<form name="complainOnTopic" action="topicComplain.jsp">
+    			<input type="submit" name="complainOnTopicButton" value="Complain"></input>
+    			<input type="hidden" name="headline" value="${top.value.headline}"></input>
+    			<input type="hidden" name="moderator" value="${param.moderator}"></input>
   			</form>
   			</td>
 		</tr>
