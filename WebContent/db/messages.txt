@@ -1,5 +1,6 @@
-sender|reciever|message|red|
 u|djuric|zxv|false|
 djuric|u|kome ti more?|false|
 user|user|ej moreeee|false|
-admin|admin|dokle vise more|false|
+admin|user|Odjeb retarduuuuuu|false|
+
+admin|user|Odjeb retarduuuuuu|true|

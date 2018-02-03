@@ -5,15 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Topic content</title>
+<link rel="stylesheet" type="text/css" href="css/projekat.css">
 </head>
 <body>
 
 <a href="logedIndex.jsp">USER PAGE</a>
 <a href="subforums.jsp">SUBFORUMS</a>
 
-<p>Logged user: ${sessionScope.user.username}</p>
-<p>User role: ${sessionScope.user.role}</p>
+<p>Logged user: ${user.username}</p>
+<p>User role: ${user.role}</p>
 <p>Subforum: ${param.subforum}</p>
 <p>Moderator of Subforum: ${param.moderator}</p>
 
@@ -87,7 +88,7 @@
 			</form>
 			</td>
 			<td>
-			<a href="./DeleteComment?id1=${com.value.id}">DELETE</a>
+			<a href="./DeleteComment?id1=${com.value.id}"><button>DELETE</button></a>
   			</td>
   			<td> 
 			<form name="updateComment" action="commentChange.jsp">

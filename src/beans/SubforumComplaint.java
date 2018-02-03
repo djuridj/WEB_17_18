@@ -7,18 +7,22 @@ public class SubforumComplaint {
 	public String subforum;
 	public String author;
 	public String admin;
+	public String status;
+	public String warning;
 	
 	public SubforumComplaint() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SubforumComplaint(String text, String date, String subforum, String author, String admin) {
+	public SubforumComplaint(String text, String date, String subforum, String author, String admin, String status, String warning) {
 		super();
 		this.text = text;
 		this.date = date;
 		this.subforum = subforum;
 		this.author = author;
 		this.admin = admin;
+		this.status = status;
+		this.warning = warning;
 	}
 
 	public String getText() {
@@ -60,7 +64,21 @@ public class SubforumComplaint {
 	public void setAdmin(String admin) {
 		this.admin = admin;
 	}
-	
-	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getWarning() {
+		return warning;
+	}
+
+	public void setWarning(String warning) {
+		this.warning = warning;
+	}
 	
 }

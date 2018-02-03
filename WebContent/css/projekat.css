@@ -1,0 +1,27 @@
+form { margin: 0 auto;
+	   width:250px; 
+}
+
+body {
+    background-color: #8A971;
+	color : #5D9A31;
+}
+
+input[type="submit"], button {
+	background-color: #F5F5F5;
+	border: 2px solid #E8E8E8;
+	color: #24480B;
+}
+
+th {
+	background-color: #5D9A31;
+	color: white;
+}
+
+h3 {
+	color: #24480B;
+}
+
+h1 {
+	color: #142B04;
+}

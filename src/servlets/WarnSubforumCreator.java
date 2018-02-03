@@ -1,13 +1,9 @@
 package servlets;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Hashtable;
+import java.util.Set;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,22 +14,22 @@ import javax.servlet.http.HttpSession;
 import beans.SubforumComplaint;
 
 /**
- * Servlet implementation class ComplainOnSubforum
+ * Servlet implementation class WarnSubforumCreator
  */
-@WebServlet("/ComplainOnSubforum")
-public class ComplainOnSubforum extends HttpServlet {
+@WebServlet("/WarnSubforumCreator")
+public class WarnSubforumCreator extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ComplainOnSubforum() {
+    public WarnSubforumCreator() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-    String path = servlets.Registration.path;
     
+    String path = servlets.Registration.path;
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -46,31 +42,42 @@ public class ComplainOnSubforum extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String text = request.getParameter("text");
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-		Date today = Calendar.getInstance().getTime();        
-		String date = df.format(today);
+		HttpSession session = request.getSession();
+		
+		String text = request.getParameter("text");  
+		String date = request.getParameter("date");
 		String subforum = request.getParameter("subforum");
 		String author = request.getParameter("author");
 		String admin = "admin";
-		String status = "Complaint on hold";
-		String warning = "No warnings";
-	
-		HttpSession session = request.getSession();
-		
-		Serialization s = new Serialization();
+		String status = request.getParameter("status");
+		String warning = "Subforum author is warned";
 		
 		SubforumComplaint sfc = new SubforumComplaint(text, date, subforum, author, admin, status, warning);
 		
-		@SuppressWarnings("unchecked")
-		Hashtable<String, SubforumComplaint> subc = (Hashtable<String, SubforumComplaint>) session.getAttribute("subforumcomplaint");
-
+		Serialization s = new Serialization();
 		
-		subc.put(text, sfc);
-		session.setAttribute("subforumcomplaint", subc);
-		RequestDispatcher rd = request.getRequestDispatcher("subforums.jsp");
-		rd.forward(request, response);
+		
+		Hashtable<String, SubforumComplaint> sc = s.listSubforumComplaints(path);
+		
+		String idBrisanje = "";
+		
+		Set<String> keys = sc.keySet();
+		for (String kor : keys) {
+			if (kor.equals(sfc.getText())) {
+				idBrisanje = kor;
+				
+			}
+		}
+		
+		s.deleteSubforumComplaint(idBrisanje, path);
+		sc.remove(idBrisanje);
+
 		s.addSubforumComplaint(sfc, path);
+		sc.put(idBrisanje, sfc);
+		
+		session.setAttribute("subforumcomplaint", sc);
+		
+		response.sendRedirect("logedIndex.jsp");
 	}
 
 }

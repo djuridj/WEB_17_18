@@ -5,19 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome</title>
+<link rel="stylesheet" type="text/css" href="css/projekat.css">
 </head>
 <body>
-
-<a href="subforums.jsp">SUBFORUMS</a>
-
-	<h2>Login</h2>
-
-		 <form name="login" method="post"  action="Login" >
-   		Username:<br>
-  		<input type="text" name="username"></br>
-  		Password:<br>
-  		<input type="password" name="password"> </br>
-  		<input type="submit" value="Login"></br>
+	
+	<form name="login" method="post"  action="Login" >
+		<h2>Login</h2>
+   		<p>Username:</p>
+  		<input type="text" name="username">
+  		<p>Password:</p>
+  		<input type="password" name="password">
+  		<p></p>
+  		<input type="submit" value="Login">
 		
   		<p> Not registered? Click <a href="Registration.jsp">here</a> . </p>
 	</form> 

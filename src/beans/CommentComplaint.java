@@ -8,12 +8,14 @@ public class CommentComplaint {
 	public String author;
 	public String admin;
 	public String moderator;
+	public String status;
+	public String warning;
 	
 	public CommentComplaint() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CommentComplaint(String text, String date, int comment, String author, String admin, String moderator) {
+	public CommentComplaint(String text, String date, int comment, String author, String admin, String moderator, String status, String warning) {
 		super();
 		this.text = text;
 		this.date = date;
@@ -21,6 +23,8 @@ public class CommentComplaint {
 		this.author = author;
 		this.admin = admin;
 		this.moderator = moderator;
+		this.status = status;
+		this.warning = warning;
 	}
 
 	public String getText() {
@@ -69,6 +73,22 @@ public class CommentComplaint {
 
 	public void setModerator(String moderator) {
 		this.moderator = moderator;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getWarning() {
+		return warning;
+	}
+
+	public void setWarning(String warning) {
+		this.warning = warning;
 	}
 	
 	

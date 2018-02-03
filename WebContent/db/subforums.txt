@@ -1,6 +1,1 @@
-3aaa|3|3|3|djuric|
-3aaaaa|3|3|3|djuric|
-2|2222222|2222222|2222222|user|
-a|a|annnnn|a|user|
-
-a2|aaaaaazzz|annn|aaazzzzz|admin|
+Sport|3|3|3|djuric|

@@ -5,26 +5,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Comment complain</title>
+<link rel="stylesheet" type="text/css" href="css/projekat.css">
 </head>
 <body>
-
-<h2>New complaint</h2>
-
 
 
 
 	<form name = "addComplaint" method="POST" action="ComplainOnComment">
-		<table title="Enter new complaint" align="center" >
+		<h2>New complaint</h2>
 		
-		<tr>
-		<td align="right">Text:  </td><td><input	type="text" name="text" style="height:200px"></td>
-		</tr>
+		<p>Text:</p>
+		<textarea name="text" cols="40" rows="5"></textarea>
 		 
-		 <tr>
-		 <td colspan="2" align="left"><input type = "submit" value="AddComplaint"></td>
-		 </tr>
-		 
-		 </table>
+		<input type = "submit" value="AddComplaint">
 		 
 		 <input type="hidden" name="comment" value="${param.comment}"></input>
 		 <input type="hidden" name="moderator" value="${param.moderator}"></input>

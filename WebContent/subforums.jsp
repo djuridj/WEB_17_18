@@ -6,20 +6,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/projekat.css">
 </head>
 <body>
 
 <a href="logedIndex.jsp">USER PAGE</a>
 <a href="subforums.jsp">SUBFORUMS</a>
+<a href="messages.jsp">MESSAGES</a>
+<a href="complaints.jsp">COMPLAINTS</a>
 
 <c:if test="${user.role == 'Admin'}">
 	<a href="users.jsp">List Users</a>
 </c:if>
 
-<p>Logged user: ${sessionScope.user.username}</p>
-<p>User role: ${sessionScope.user.role}</p>
-<p>Registration date: ${sessionScope.user.regDate}</p>
+<p>Logged user: ${user.username}</p>
+<p>User role: ${user.role}</p>
 
+<form action="Logout" method="post">
+ 	<input type="submit" value = "Logout">
+</form>
 
 <h3>All subforums</h3>
 <table border="1">
@@ -34,7 +39,9 @@
 		<tr>
 			<td align="center">${forum.value.name}</td>
 			<td align="center">${forum.value.description}</td>
-			<td align="center">${forum.value.icon}</td>
+			<c:if test="${forum.value.name == 'Sport' }">
+				<td><img src="img/foot.png" width = "100" height = "100"></img></td>
+			</c:if>
 			<td align="center">${forum.value.rules}</td>
 			<td align="center">${forum.value.moderator}</td>
 			<td>
@@ -60,7 +67,7 @@
 	  			</form>
   			</td>
   			<td>
-			<a href="./DeleteSubforum?name1=${forum.value.name}">DELETE</a>
+			<a href="./DeleteSubforum?name1=${forum.value.name}"><button>DELETE</button></a>
   			</td>
   			<td>
   			<form name="changeSubforum" action="subforumContentChange.jsp">
@@ -84,9 +91,9 @@
 </table>
 
 <c:if test="${ user.role != 'User'}">
-	<h2>New subforum addition</h2>
 
 	<form name = "addSubforum" method="POST" action="AddSubforum">
+		<h2>New subforum addition</h2>
 		<table title="Enter new subforum data" align="center" >
 		
 		<tr>
@@ -108,8 +115,7 @@
 		<tr>
 		<td colspan="2" align="left"><input type = "submit" value="AddSubforum"></td>
 		</tr>
-		 
-		 </table>
+		</table>
 	</form>
 </c:if>
 

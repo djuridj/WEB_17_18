@@ -5,32 +5,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Udate comment</title>
+<link rel="stylesheet" type="text/css" href="css/projekat.css">
 </head>
 <body>
 
-<h2>Update comment:</h2>	
+	
 <form  action="UpdateComment" method="post">
-	<p>Topic</p>
-	<p>${param.topic}</p>
+	<h2>Update comment:</h2>
 	
-	<p>Author</p>
-	<p>${param.author}</p>
-	
-	<p>Date made</p>
-	<p>${param.date}</p>
-	
-	
-	<table title="Edit text" align="center" >
+	<p>Topic: ${param.topic}</p>
+	<p>Author: ${param.author}</p>
+	<p>Date made: ${param.date}</p>
 
+		<p>Text:</p>
+		<textarea name="text" cols="40" rows="5">${param.text}</textarea>  
+		
 	
-	<tr>
-		<td>Text</td> <td><input	type="text" name="text" value="${param.text}"></td>
-	<tr>
-	
-	<tr>
-		<td><input type="submit" value="Update"></td>
-	</tr>
-	</table>
+		<input type="submit" value="Update">
+
 	
 		<input type="hidden" name="topic" value="${param.topic}"></input>
 		<input type="hidden" name="author" value="${param.author}"></input>

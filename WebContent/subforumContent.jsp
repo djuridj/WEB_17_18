@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/projekat.css">
 </head>
 <body>
 
@@ -86,7 +87,7 @@
   			</form>
   			</td>
   			<td>
-			<a href="./DeleteTopic?headline1=${top.value.headline}">DELETE</a>
+			<a href="./DeleteTopic?headline1=${top.value.headline}"><button>DELETE</button></a>
   			</td>
   			<td>
 			<form name="changeTopic" action="topicChange.jsp">

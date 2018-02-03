@@ -1,13 +1,9 @@
 package servlets;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Hashtable;
+import java.util.Set;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,16 +14,16 @@ import javax.servlet.http.HttpSession;
 import beans.TopicComplaint;
 
 /**
- * Servlet implementation class ComplainOnTopic
+ * Servlet implementation class WarnTopicCreator
  */
-@WebServlet("/ComplainOnTopic")
-public class ComplainOnTopic extends HttpServlet {
+@WebServlet("/WarnTopicCreator")
+public class WarnTopicCreator extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ComplainOnTopic() {
+    public WarnTopicCreator() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,32 +42,44 @@ public class ComplainOnTopic extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String text = request.getParameter("text");
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-		Date today = Calendar.getInstance().getTime();        
-		String date = df.format(today);
+		HttpSession session = request.getSession();
+		
+		String text = request.getParameter("text");  
+		String date = request.getParameter("date");
 		String topic = request.getParameter("topic");
 		String author = request.getParameter("author");
 		String admin = "admin";
 		String moderator = request.getParameter("moderator");
-		String status = "Complaint on hold";
-		String warning = "No warnings";
-	
-		HttpSession session = request.getSession();
-		
-		Serialization s = new Serialization();
+		String status = request.getParameter("status");
+		String warning = "Topic author is warned";
 		
 		TopicComplaint tpc = new TopicComplaint(text, date, topic, author, admin, moderator, status, warning);
 		
-		@SuppressWarnings("unchecked")
-		Hashtable<String, TopicComplaint> topc = (Hashtable<String, TopicComplaint>) session.getAttribute("topiccomplaint");
-
+		Serialization s = new Serialization();
 		
-		topc.put(text, tpc);
-		session.setAttribute("topiccomplaint", topc);
-		RequestDispatcher rd = request.getRequestDispatcher("subforums.jsp");
-		rd.forward(request, response);
+		
+		Hashtable<String, TopicComplaint> tc = s.listSTopicComplaints(path);
+		
+		String idBrisanje = "";
+		
+		Set<String> keys = tc.keySet();
+		for (String kor : keys) {
+			if (kor.equals(tpc.getText())) {
+				idBrisanje = kor;
+				
+			}
+		}
+		
+		s.deleteTopicComplaint(idBrisanje, path);
+		tc.remove(idBrisanje);
+
 		s.addTopicComplaint(tpc, path);
+		tc.put(idBrisanje, tpc);
+		
+		session.setAttribute("topiccomplaint", tc);
+		
+		response.sendRedirect("logedIndex.jsp");
+
 	}
 
 }

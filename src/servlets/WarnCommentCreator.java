@@ -1,13 +1,9 @@
 package servlets;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Hashtable;
+import java.util.Set;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,59 +14,70 @@ import javax.servlet.http.HttpSession;
 import beans.CommentComplaint;
 
 /**
- * Servlet implementation class ComplainOnComment
+ * Servlet implementation class WarnCommentCreator
  */
-@WebServlet("/ComplainOnComment")
-public class ComplainOnComment extends HttpServlet {
+@WebServlet("/WarnCommentCreator")
+public class WarnCommentCreator extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ComplainOnComment() {
+    public WarnCommentCreator() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-    String path = servlets.Registration.path;
     
+    String path = servlets.Registration.path;
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String text = request.getParameter("text");
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-		Date today = Calendar.getInstance().getTime();        
-		String date = df.format(today);
+		HttpSession session = request.getSession();
+		
+		String text = request.getParameter("text");  
+		String date = request.getParameter("date");
 		int comment = Integer.parseInt(request.getParameter("comment"));
 		String author = request.getParameter("author");
 		String admin = "admin";
 		String moderator = request.getParameter("moderator");
-		String status = "Complaint on hold";
-		String warning = "No warnings";
-	
-		HttpSession session = request.getSession();
-		
-		Serialization s = new Serialization();
+		String status = request.getParameter("status");
+		String warning = "Comment author is warned";
 		
 		CommentComplaint cmc = new CommentComplaint(text, date, comment, author, admin, moderator, status, warning);
 		
-		@SuppressWarnings("unchecked")
-		Hashtable<String, CommentComplaint> comc = (Hashtable<String, CommentComplaint>) session.getAttribute("commentcomplaint");
-
+		Serialization s = new Serialization();
 		
-		comc.put(text, cmc);
-		session.setAttribute("commentcomplaint", comc);
-		RequestDispatcher rd = request.getRequestDispatcher("subforums.jsp");
-		rd.forward(request, response);
+		Hashtable<String, CommentComplaint> cc = s.listCommentComplaints(path);
+		
+		String idBrisanje = "";
+		
+		Set<String> keys = cc.keySet();
+		for (String kor : keys) {
+			if (kor.equals(cmc.getText())) {
+				idBrisanje = kor;
+				
+			}
+		}
+		
+		s.deleteCommentComplaint(idBrisanje, path);
+		cc.remove(idBrisanje);
+
 		s.addCommentComplaint(cmc, path);
+		cc.put(idBrisanje, cmc);
+		
+		session.setAttribute("commentcomplaint", cc);
+		
+		response.sendRedirect("logedIndex.jsp");
 	}
 
 }

@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Create comment</title>
+<link rel="stylesheet" type="text/css" href="css/projekat.css">
 </head>
 <body>
 
@@ -13,21 +14,19 @@
 <p>Subforum: ${param.subforum}</p>
 <p>Topic: ${param.headline}</p>
 
-<h2>New comment</h2>
+
 
 
 	<form name = "addComment" method="POST" action="AddComment">
-		<table title="Enter new comment data" align="center" >
+
+		<h2>New comment</h2>		
 		
-		<tr>
-		<td align="right">Text:  </td><td><input	type="text" name="text"></td>
-		</tr>
+		 <textarea name="text" cols="40" rows="5"></textarea>
 		 
-		 <tr>
-		 <td colspan="2" align="left"><input type = "submit" value="AddComment"></td>
-		 </tr>
-		 
-		 </table>
+		<p></p>
+		<input type = "submit" value="Add Comment">
+		
+
 		 
 		 <input type="hidden" name="topic" value="${param.headline}"></input>
 		 

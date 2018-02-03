@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/projekat.css">
 </head>
 <body>
 
@@ -16,18 +17,26 @@
 	<a href="users.jsp">List Users</a>
 </c:if>
 
-<p>Logged user: ${sessionScope.user.username}</p>
-<p>User role: ${sessionScope.user.role}</p>
+<p>Logged user: ${user.username}</p>
+<p>User role: ${user.role}</p>
 
 <h3>All users</h3>
 <table border="1">
 		<tr bgcolor="lightgrey">
 			<th width="20%">Username</th>
+			<th width="20%">First name</th>
+			<th width="20%">Last name</th>
+			<th width="20%">Email</th>
+			<th width="20%">Telephone</th>
 			<th width="20%">Role</th>	
 		</tr>
 	<c:forEach items="${allusers}" var="usr">
 		<tr>
 			<td align="center">${usr.value.username}</td>
+			<td align="center">${usr.value.firstname}</td>
+			<td align="center">${usr.value.lastname}</td>
+			<td align="center">${usr.value.email}</td>
+			<td align="center">${usr.value.telephone}</td>
 			<td align="center">
 				<select name="role">
 							<option selected="selected">${usr.value.role}</option>
