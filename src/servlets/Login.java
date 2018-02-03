@@ -83,8 +83,11 @@ public class Login extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("user", u);
 					session.setAttribute("allusers", usrs);
+					session.setAttribute("usersearch", usrs);
 					session.setAttribute("subforum", sf);
+					session.setAttribute("subforumsearch", sf);
 					session.setAttribute("topic", tp);
+					session.setAttribute("topicsearch", tp);
 					session.setAttribute("comment", com);
 					session.setAttribute("followedsubforum", fs);
 					session.setAttribute("message", mes);

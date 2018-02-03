@@ -14,6 +14,7 @@
 <a href="subforums.jsp">SUBFORUMS</a>
 <a href="messages.jsp">MESSAGES</a>
 <a href="complaints.jsp">COMPLAINTS</a>
+<a href="search.jsp">SEARCH</a>
 
 <c:if test="${user.role == 'Admin'}">
 	<a href="users.jsp">List Users</a>
@@ -25,7 +26,6 @@
 <form action="Logout" method="post">
  	<input type="submit" value = "Logout">
 </form>
-
 
 <h3>All followed subforums</h3>
 <c:forEach items="${followedsubforum}" var="fforum">

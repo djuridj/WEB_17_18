@@ -28,7 +28,8 @@
 			<th width="20%">Last name</th>
 			<th width="20%">Email</th>
 			<th width="20%">Telephone</th>
-			<th width="20%">Role</th>	
+			<th width="20%">Role</th>
+			<th width="20%">Registration Date</th>	
 		</tr>
 	<c:forEach items="${allusers}" var="usr">
 		<tr>
@@ -37,6 +38,7 @@
 			<td align="center">${usr.value.lastname}</td>
 			<td align="center">${usr.value.email}</td>
 			<td align="center">${usr.value.telephone}</td>
+			<td align="center">${usr.value.regDate}</td>
 			<td align="center">
 				<select name="role">
 							<option selected="selected">${usr.value.role}</option>
