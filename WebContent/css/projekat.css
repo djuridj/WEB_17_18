@@ -5,12 +5,21 @@ form { margin: 0 auto;
 body {
     background-color: #8A971;
 	color : #5D9A31;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 input[type="submit"], button {
 	background-color: #F5F5F5;
 	border: 2px solid #E8E8E8;
 	color: #24480B;
+}
+
+table tr td form input[type="submit"]:hover {
+	background-color: #4CAF50;
+}
+
+input[type=text]:focus {
+    border: 3px solid #555;
 }
 
 th {
@@ -24,4 +33,63 @@ h3 {
 
 h1 {
 	color: #142B04;
+}
+
+tr:hover {background-color: #f5f5f5;}
+
+table tr td form {
+	text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #4CAF50;
+}
+
+li form {
+		
+}
+
+li form[action="Logout"] {
+	display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.com {
+	padding-left: 13px;
+}
+
+form[action="Refresh"] {
+	display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    padding: 0px 0px 5px 17px;
+}
+
+table tr td a {
+	padding-left: 87px;
 }

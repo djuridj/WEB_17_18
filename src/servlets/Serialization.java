@@ -559,6 +559,7 @@ public class Serialization {
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("\n");
+		sb.append(message.getId() + "|");
 		sb.append(message.getSender() + "|");
 		sb.append(message.getReciever() + "|");
 		sb.append(message.getContent() + "|");
@@ -567,8 +568,8 @@ public class Serialization {
 		fw.close();
 	}
 	
-	public Hashtable<String, Message> listMessages(String path) {		
-		Hashtable<String, Message> messages = new Hashtable<String, Message>();
+	public Hashtable<Integer, Message> listMessages(String path) {		
+		Hashtable<Integer, Message> messages = new Hashtable<Integer, Message>();
 		
 
 		File file = new File(path + "\\messages.txt");
@@ -582,16 +583,16 @@ public class Serialization {
 				StringTokenizer st = new StringTokenizer(text, "|");
 				
 				while (st.hasMoreTokens()) {
-					
+					int id = Integer.parseInt(st.nextToken().trim());
 					String sender = st.nextToken().trim();
 					String reciever = st.nextToken().trim();
 					String content = st.nextToken().trim();
 					//String red = st.nextToken().trim();
 					boolean red = Boolean.parseBoolean(st.nextToken().trim());
 					
-					Message m = new Message(sender, reciever, content, red);
+					Message m = new Message(id, sender, reciever, content, red);
 					
-					messages.put(text, m);
+					messages.put(id, m);
 				}
 
 			}
@@ -613,7 +614,7 @@ public class Serialization {
 	
 	
 	@SuppressWarnings("unused")
-	public void deleteMessage(String content,String path) throws IOException {
+	public void deleteMessage(int id,String path) throws IOException {
 		// TODO Auto-generated method stub
 
 		File file = new File(path+"\\messages.txt");
@@ -633,13 +634,13 @@ public class Serialization {
 
 				StringTokenizer st = new StringTokenizer(text, "|");
 				while (st.hasMoreTokens()) {
-					
+					int idd = Integer.parseInt(st.nextToken().trim());
 					String sender = st.nextToken().trim();
 					String reciever = st.nextToken().trim();
 					String contentt = st.nextToken().trim();
 					Boolean red = Boolean.parseBoolean(st.nextToken().trim());
 					
-					if(!contentt.equals(content))
+					if(idd != id)
 					{
 						pw.write(text + "\n");
 					}

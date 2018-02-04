@@ -13,22 +13,28 @@
 </head>
 <body>
 
-<a href="logedIndex.jsp">USER PAGE</a>
-<a href="subforums.jsp">SUBFORUMS</a>
-<a href="messages.jsp">MESSAGES</a>
-<a href="complaints.jsp">COMPLAINTS</a>
-<a href="search.jsp">SEARCH</a>
+<ul>
+<li><a href="logedIndex.jsp">USER PAGE</a></li>
+<li><a href="subforums.jsp">SUBFORUMS</a></li>
+<li><a href="messages.jsp">MESSAGES</a></li>
+<li><a href="complaints.jsp">COMPLAINTS</a></li>
+<li><a href="search.jsp">SEARCH</a></li>
 
+<li>
 <c:if test="${user.role == 'Admin'}">
-	<a href="users.jsp">List Users</a>
+	<a href="users.jsp">LIST USERS</a>
 </c:if>
+</li>
 
-<p>Logged user: ${user.username}</p>
-<p>User role: ${user.role}</p>
-
+<li style="float:right">
 <form action="Logout" method="post">
  	<input type="submit" value = "Logout">
 </form>
+</li>
+</ul>
+<p>Logged user: ${user.username}</p>
+<p>User role: ${user.role}</p>
+
 
 <% SubforumSearch ss = new SubforumSearch(); %>
 <%if(session.getAttribute("pppSesija") == null) {ss.name = ""; ss.description = ""; ss.moderator = "";} else { ss =(SubforumSearch) session.getAttribute("pppSesija");} %>
@@ -58,11 +64,16 @@
 			</tr>
 			
 			<tr>
-				<td colspan="2" align="center"><button id="subforumSearch">
-						Search</button></td>
+				<td colspan="2" align="center">
+				<button id="subforumSearch">Search</button>
+				</td>
 			</tr>
 			
 		</table>
+</form>
+
+<form action="Refresh" method="post">
+	<input type="submit" value="Refresh"></input>
 </form>
 
 <h3>All subforums</h3>
@@ -78,9 +89,14 @@
 		<tr>
 			<td align="center">${forum.value.name}</td>
 			<td align="center">${forum.value.description}</td>
-			<c:if test="${forum.value.name == 'Sport' }">
-				<td><img src="img/foot.png" width = "100" height = "100"></img></td>
-			</c:if>
+			<c:choose>
+				<c:when test="${forum.value.name == 'Sport' }">
+					<td align="center"><img src="img/foot.png" width = "100" height = "100"></img></td>
+				</c:when>
+				<c:otherwise>
+					<td align="center">${forum.value.icon}</td>
+				</c:otherwise>
+			</c:choose>	
 			<td align="center">${forum.value.rules}</td>
 			<td align="center">${forum.value.moderator}</td>
 			<td>
@@ -92,10 +108,7 @@
     			<input type="hidden" name="rules" value="${forum.value.rules}"></input>
     			<input type="hidden" name="moderator" value="${forum.value.moderator}"></input>
   			</form>
-  			</td>
-  			<c:if test="${ user.username != null}">
-  			<td>
-				<form name="followSubforum" method="POST" action="FollowSubforum">
+			<form name="followSubforum" method="POST" action="FollowSubforum">
 	    			<input type="submit" value="Follow Subforum"></input>
 	    			<input type="hidden" name="name" value="${forum.value.name}"></input>
 	    			<input type="hidden" name="description" value="${forum.value.description}"></input>
@@ -103,12 +116,10 @@
 	    			<input type="hidden" name="rules" value="${forum.value.rules}"></input>
 	    			<input type="hidden" name="moderator" value="${forum.value.moderator}"></input>
 	    			<input type="hidden" name="followe" value="${sessionScope.user.username}"></input>
-	  			</form>
-  			</td>
-  			<td>
-			<a href="./DeleteSubforum?name1=${forum.value.name}"><button>DELETE</button></a>
-  			</td>
-  			<td>
+	  		</form>
+	
+				<a href="./DeleteSubforum?name1=${forum.value.name}"><button>DELETE</button></a>
+	
   			<form name="changeSubforum" action="subforumContentChange.jsp">
     			<input type="submit" name="changeButton" value="Change"></input>
     			<input type="hidden" name="name" value="${forum.value.name}"></input>
@@ -117,14 +128,11 @@
     			<input type="hidden" name="rules" value="${forum.value.rules}"></input>
     			<input type="hidden" name="moderator" value="${forum.value.moderator}"></input>
   			</form>
-  			</td>
-  			<td>
   			<form name="complainOnSub" action="subforumComplain.jsp">
     			<input type="submit" name="complainOnSubButton" value="Complain"></input>
     			<input type="hidden" name="name" value="${forum.value.name}"></input>
   			</form>
   			</td>
-  			</c:if>
 		</tr>
 	</c:forEach>
 </table>
@@ -158,6 +166,9 @@
 		</table>
 </form>
 
+<form action="Refresh" method="post">
+	<input type="submit" value="Refresh"></input>
+</form>
 
 <h3>All Topics</h3>
 <table border="1">
@@ -188,8 +199,6 @@
     			<input type="hidden" name="date" value="${top.value.date}"></input>
     			<input type="hidden" name="moderator" value="${param.moderator}"></input>
   			</form>
-  			</td>
-  			<td>
 			<form name="saveTopic" method="POST" action="SaveTopic">
     			<input type="submit" name="saveTopicButton" value="Save Topic"></input>
     			<input type="hidden" name="subforum" value="${top.value.subforum}"></input>
@@ -200,11 +209,9 @@
     			<input type="hidden" name="content" value="${top.value.content}"></input>
     			<input type="hidden" name="follower" value="${user.username}"></input>
   			</form>
-  			</td>
-  			<td>
-			<a href="./DeleteTopic?headline1=${top.value.headline}"><button>DELETE</button></a>
-  			</td>
-  			<td>
+  	
+				<a href="./DeleteTopic?headline1=${top.value.headline}"><button>DELETE</button></a>
+  	
 			<form name="changeTopic" action="topicChange.jsp">
     			<input type="submit" name="changeTopicButton" value="Change Topic"></input>
     			<input type="hidden" name="subforum" value="${top.value.subforum}"></input>
@@ -216,8 +223,6 @@
     			<input type="hidden" name="likes" value="${top.value.likes}"></input>
     			<input type="hidden" name="dislikes" value="${top.value.dislikes}"></input>
   			</form>
-  			</td>
-  			<td>
   			<form name="complainOnTopic" action="topicComplain.jsp">
     			<input type="submit" name="complainOnTopicButton" value="Complain"></input>
     			<input type="hidden" name="headline" value="${top.value.headline}"></input>
@@ -244,6 +249,10 @@
 			</tr>
 			
 		</table>
+</form>
+
+<form action="Refresh" method="post">
+	<input type="submit" value="Refresh"></input>
 </form>
 
 <h3>All users</h3>

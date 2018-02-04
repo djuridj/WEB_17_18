@@ -6,10 +6,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome</title>
 <link rel="stylesheet" type="text/css" href="css/projekat.css">
+<script type="text/javascript">
+	function check() {
+		var message = "";
+		var end = false;
+		
+	    var username = document.forms['login'].username.value;
+	    if (username == null || username == "") {
+	        message += "Username not typed in.\n";
+	        end = true;
+	    }
+		
+	    var password = document.forms['login'].password.value;
+	    if (password == null || password == "") {
+	        message += "Password not typed in.\n";
+	        end = true;
+	    }
+	    
+	    if(end){
+	    	alert(message);
+	    	return false;
+	    }
+	    
+	}
+</script>
 </head>
+
+
+
 <body>
 	
-	<form name="login" method="post"  action="Login" >
+	<form name="login" method="post"  action="Login" onsubmit="return check()">
 		<h2>Login</h2>
    		<p>Username:</p>
   		<input type="text" name="username">

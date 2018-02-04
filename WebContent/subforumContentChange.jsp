@@ -10,6 +10,26 @@
 </head>
 <body>
 
+<ul>
+<li><a href="logedIndex.jsp">USER PAGE</a></li>
+<li><a href="subforums.jsp">SUBFORUMS</a></li>
+<li><a href="messages.jsp">MESSAGES</a></li>
+<li><a href="complaints.jsp">COMPLAINTS</a></li>
+<li><a href="search.jsp">SEARCH</a></li>
+
+<li>
+<c:if test="${user.role == 'Admin'}">
+	<a href="users.jsp">LIST USERS</a>
+</c:if>
+</li>
+
+<li style="float:right">
+<form action="Logout" method="post">
+ 	<input type="submit" value = "Logout">
+</form>
+</li>
+</ul>
+
 <h2>Update subforum:</h2>	
 <form  action="UpdateSubforum" method="post">
 	<table title="Enter updated subofrum data" align="center" >
@@ -18,7 +38,8 @@
 	</tr>
 	
 	<tr>
-		<td>Description</td> <td><input	type="text" name="description" value="${param.description}"></td>
+		<td>Description</td> 
+		<td><textarea name="description" cols="21.75" rows="7">${param.description}</textarea></td>
 	</tr>
 	
 	<tr>
@@ -26,7 +47,8 @@
 	</tr>
 	
 	<tr>
-		<td>Rules</td> <td><input	type="text" name="rules" value="${param.rules}"></td>
+		<td>Rules</td>
+		<td><textarea name="rules" cols="21.75" rows="7">${param.rules}</textarea></td>
 	<tr>
 	
 	<tr>

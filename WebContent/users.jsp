@@ -5,17 +5,30 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Users</title>
 <link rel="stylesheet" type="text/css" href="css/projekat.css">
 </head>
 <body>
 
-<a href="logedIndex.jsp">USER PAGE</a>
-<a href="subforums.jsp">SUBFORUMS</a>
+<ul>
+<li><a href="logedIndex.jsp">USER PAGE</a></li>
+<li><a href="subforums.jsp">SUBFORUMS</a></li>
+<li><a href="messages.jsp">MESSAGES</a></li>
+<li><a href="complaints.jsp">COMPLAINTS</a></li>
+<li><a href="search.jsp">SEARCH</a></li>
 
+<li>
 <c:if test="${user.role == 'Admin'}">
-	<a href="users.jsp">List Users</a>
+	<a href="users.jsp">LIST USERS</a>
 </c:if>
+</li>
+
+<li style="float:right">
+<form action="Logout" method="post">
+ 	<input type="submit" value = "Logout">
+</form>
+</li>
+</ul>
 
 <p>Logged user: ${user.username}</p>
 <p>User role: ${user.role}</p>

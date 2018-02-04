@@ -2,8 +2,8 @@ package servlets;
 
 import java.io.IOException;
 import java.util.Hashtable;
+import java.util.Set;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,34 +27,56 @@ public class DeleteComment extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    String path = servlets.Registration.path;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String path = servlets.Registration.path;
-		
-		@SuppressWarnings("unchecked")
-		Hashtable<String, Comment> comments = (Hashtable<String, Comment>) session.getAttribute("comment");
-		
-		int id = Integer.parseInt(request.getParameter("id1"));	
-		comments.remove(id);
-		
-		session.setAttribute("comment", comments);
-		
-		Serialization s = new Serialization();	
-		s.deleteComment(id, path);
-		RequestDispatcher disp = request.getRequestDispatcher("subforums.jsp");
-		disp.forward(request, response);
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+HttpSession session = request.getSession();
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		String topic = request.getParameter("topic");
+		String author = "deleted";
+		String date = request.getParameter("date");
+		int parent = Integer.parseInt(request.getParameter("parent"));
+		String text = "deleted";
+		int positives = Integer.parseInt(request.getParameter("positives"));
+		int negatives = Integer.parseInt(request.getParameter("negatives"));
+		Boolean changed = true;
+		
+		Comment co = new Comment(id, topic, author, date, parent, text, positives, negatives,changed);
+		
+		Serialization s = new Serialization();
+
+		Hashtable<Integer, Comment> com = s.listComments(path);
+		
+		int idBrisanje = 0;
+		
+		Set<Integer> keys = com.keySet();
+		for (Integer kor : keys) {
+			if (kor.equals(co.getId())) {
+				idBrisanje = kor;	
+			}
+		}
+		
+		s.deleteComment(idBrisanje, path);
+		com.remove(idBrisanje);
+		
+		s.addComment(co, path);
+		com.put(idBrisanje, co);
+		
+		session.setAttribute("comment", com);
+		
+		response.sendRedirect("subforums.jsp");
 	}
 
 }

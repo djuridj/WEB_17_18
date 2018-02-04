@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.Hashtable;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,6 +45,8 @@ public class AddMessage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User u = (User)request.getSession().getAttribute("user");
+		Random rand = new Random();
+		int  id = rand.nextInt(2000) + 1;
 		String sender = u.getUsername();
 		String reciever = request.getParameter("reciever");
 		String content = request.getParameter("content");
@@ -52,7 +55,7 @@ public class AddMessage extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		Serialization s = new Serialization();
-		Message m = new Message(sender,reciever,content,red);
+		Message m = new Message(id,sender,reciever,content,red);
 		
 		@SuppressWarnings("unchecked")
 		Hashtable<String, Message> mes = (Hashtable<String, Message>) session.getAttribute("message");

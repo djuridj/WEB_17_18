@@ -2,7 +2,6 @@ package servlets;
 
 import java.io.IOException;
 import java.util.Hashtable;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,25 +10,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.Message;
+import beans.Subforum;
+import beans.Topic;
+import beans.User;
 
 /**
- * Servlet implementation class MarkAsRed
+ * Servlet implementation class Refresh
  */
-@WebServlet("/MarkAsRed")
-public class MarkAsRed extends HttpServlet {
+@WebServlet("/Refresh")
+public class Refresh extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MarkAsRed() {
+    public Refresh() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    String path = servlets.Registration.path;
-    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -42,38 +41,19 @@ public class MarkAsRed extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		int id = Integer.parseInt(request.getParameter("id"));
-		String sender = request.getParameter("sender");
-		String reciever = request.getParameter("reciever");
-		String content = request.getParameter("content");
-		Boolean red = true;
 		
-		Message mg = new Message(id, sender, reciever, content, red);
-		
+		String path = servlets.Registration.path;
 		Serialization s = new Serialization();
 		
+		Hashtable<String, Subforum> sf = s.listSubforums(path);
+		Hashtable<String, Topic> tp = s.listTopics(path);
+		Hashtable<String, User> usrs = s.listUsers(path);
 		
-		Hashtable<Integer, Message> msg = s.listMessages(path);
-		
-		int idBrisanje = 0;
-		
-		Set<Integer> keys = msg.keySet();
-		for (Integer kor : keys) {
-			if (kor.equals(mg.getId())) {
-				idBrisanje = kor;
-			}
-		}
-		
-		s.deleteMessage(idBrisanje, path);
-		msg.remove(idBrisanje);
-		
-		s.addMessage(mg, path);
-		msg.put(idBrisanje, mg);
-		
-		session.setAttribute("message", msg);
-		
-		response.sendRedirect("messages.jsp");
+		HttpSession session = request.getSession();
+		session.setAttribute("usersearch", usrs);
+		session.setAttribute("subforumsearch", sf);
+		session.setAttribute("topicsearch", tp);
+		response.sendRedirect("search.jsp");
 	}
 
 }

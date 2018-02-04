@@ -6,6 +6,7 @@ public class Message implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	private int id;
 	private String sender;
 	private String reciever;
 	private String content;
@@ -16,9 +17,10 @@ public class Message implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Message(String sender, String reciever, String content,
+	public Message(int id, String sender, String reciever, String content,
 			Boolean red) {
 		super();
+		this.id = id;
 		this.sender = sender;
 		this.reciever = reciever;
 		this.content = content;
@@ -27,6 +29,14 @@ public class Message implements Serializable {
 
 	
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getSender() {
 		return sender;
 	}

@@ -1,6 +1,2 @@
-u|djuric|zxv|false|
-djuric|u|kome ti more?|false|
-user|user|ej moreeee|false|
-admin|user|Odjeb retarduuuuuu|false|
 
-admin|user|Odjeb retarduuuuuu|true|
+261|admin|a|alo matori|true|

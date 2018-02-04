@@ -10,24 +10,28 @@
 </head>
 <body>
 
-<a href="logedIndex.jsp">USER PAGE</a>
-<a href="subforums.jsp">SUBFORUMS</a>
-<a href="messages.jsp">MESSAGES</a>
-<a href="complaints.jsp">COMPLAINTS</a>
+<ul>
+<li><a href="logedIndex.jsp">USER PAGE</a></li>
+<li><a href="subforums.jsp">SUBFORUMS</a></li>
+<li><a href="messages.jsp">MESSAGES</a></li>
+<li><a href="complaints.jsp">COMPLAINTS</a></li>
+<li><a href="search.jsp">SEARCH</a></li>
 
+<li>
 <c:if test="${user.role == 'Admin'}">
-	<a href="users.jsp">List Users</a>
+	<a href="users.jsp">LIST USERS</a>
 </c:if>
+</li>
+
+<li style="float:right">
+<form action="Logout" method="post">
+ 	<input type="submit" value = "Logout">
+</form>
+</li>
+</ul>
 
 <p>Logged user: ${user.username}</p>
 <p>User role: ${user.role}</p>
-
-<form action="Logout" method="post">
- 	<input type="submit" value = "Logout">
-</form>
-<form action="Logout" method="post">
- 	<input type="submit" value = "Logout">
-</form>
 
 <h1>MESSAGES</h1>
 
@@ -48,17 +52,16 @@
     			<input type="hidden" name="sender" value="${user.username}"></input>
     			<input type="hidden" name="author" value="${mes.value.sender}"></input>
   			</form>
-  			</td>
   			<c:if test="${mes.value.red == false}">
-  			<td>
 			<form name="markAsRed" method="post" action="MarkAsRed">
     			<input type="submit" name="reply" value="Mark As Red"></input>
+    			<input type="hidden" name="id" value="${mes.value.id}"></input>
     			<input type="hidden" name="sender" value="${mes.value.sender}"></input>
     			<input type="hidden" name=reciever value="${mes.value.reciever}"></input>
     			<input type="hidden" name="content" value="${mes.value.content}"></input>
   			</form>
-  			</td>
   			</c:if>
+			</td>
 		</tr>
 		</c:if>
 	</c:forEach>
@@ -74,9 +77,10 @@
 	<c:forEach items="${message}" var="mes">
 	<c:if test="${ user.username == mes.value.sender}">
 		<tr>
-			<td align="center">${mes.value.sender}</td>
+			<td align="center">${mes.value.reciever}</td>
 			<td align="center">${mes.value.content}</td>
 			<td align="center">${mes.value.red}</td>
+			<c:if test="${user.username != mes.value.sender}">
 			<td>
 			<form name="reply" action="messageCreate.jsp">
     			<input type="submit" name="reply" value="Reply"></input>
@@ -84,6 +88,7 @@
     			<input type="hidden" name="author" value="${mes.value.sender}"></input>
   			</form>
   			</td>
+			</c:if>
 		</tr>
 		</c:if>
 	</c:forEach>

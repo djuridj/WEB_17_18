@@ -8,6 +8,28 @@
 <title>Subforum</title>
 <link rel="stylesheet" type="text/css" href="css/projekat.css">
 </head>
+<body>
+
+<ul>
+<li><a href="logedIndex.jsp">USER PAGE</a></li>
+<li><a href="subforums.jsp">SUBFORUMS</a></li>
+<li><a href="messages.jsp">MESSAGES</a></li>
+<li><a href="complaints.jsp">COMPLAINTS</a></li>
+<li><a href="search.jsp">SEARCH</a></li>
+
+<li>
+<c:if test="${user.role == 'Admin'}">
+	<a href="users.jsp">LIST USERS</a>
+</c:if>
+</li>
+
+<li style="float:right">
+<form action="Logout" method="post">
+ 	<input type="submit" value = "Logout">
+</form>
+</li>
+</ul>
+
 <p>Logged user: ${sessionScope.user.username}</p>
 <p>User role: ${sessionScope.user.role}</p>
 <p>Subforum: ${param.name}</p>
@@ -89,11 +111,7 @@
 		</c:if>
 	</c:forEach>
 </table>
-	
-<form name="newTopic" action="topicCreate.jsp">
-    			<input type="submit" name="newButton" value="New Topic"></input>
-    			<input type="hidden" name="name" value="${param.name}"></input>
-</form>
+
 
 <h2>New topic addition</h2>
 

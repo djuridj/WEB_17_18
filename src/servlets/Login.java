@@ -54,7 +54,7 @@ public class Login extends HttpServlet {
 		
 		if (username == null || password == null) {
 			message = "Wrong username or password! Please try again!";
-			RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("Index.jsp");
 			rd.forward(request, response);
 			return;
 		}
@@ -67,7 +67,7 @@ public class Login extends HttpServlet {
 	Hashtable<String, Topic> tp = s.listTopics(path);
 	Hashtable<Integer, Comment> com = s.listComments(path);
 	Hashtable<String, FollowedSub> fs = s.listFollowed(path);
-	Hashtable<String, Message> mes = s.listMessages(path);
+	Hashtable<Integer, Message> mes = s.listMessages(path);
 	Hashtable<String, SavedTopic> stc = s.listSavedTopics(path);
 	Hashtable<String, SubforumComplaint> sfc = s.listSubforumComplaints(path);
 	Hashtable<String, TopicComplaint> tpc = s.listSTopicComplaints(path);
@@ -77,7 +77,6 @@ public class Login extends HttpServlet {
 			User u = users.get(username);
 			
 			if(u.getPassword().equals(password)){
-				//if(u.getRole().equals(Role.User)){
 					System.out.println("User with a same name exists " + u.getUsername());
 					
 					HttpSession session = request.getSession();
@@ -98,15 +97,22 @@ public class Login extends HttpServlet {
 					response.sendRedirect("logedIndex.jsp");
 					return;
 
-				//}
 			} else {
 				System.out.println("Bad pass");
-				message = "Wrong username or pass, try again";
+				message = "Wrong username or password, please try again";
 				request.setAttribute("username", u.getUsername());
+				RequestDispatcher rd = request.getRequestDispatcher("Index.jsp");
+				rd.forward(request, response);
+				return;
+
 			}
 		} else {
 			System.out.println("User doesn't exist " + username);
-			message = "Wrong username or pass, try again";
+			message = "Wrong username or password, try again";
+			RequestDispatcher rd = request.getRequestDispatcher("Index.jsp");
+			rd.forward(request, response);
+			//return;
+
 		}
 	
 	RequestDispatcher rd = request.getRequestDispatcher("logedIndex.jsp");

@@ -1,5 +1,3 @@
-aaaaaaaaaa|asdf|asdgsdg|asdg|admin|admin|
 3aaaaa|3|3|3|djuric|admin|
-
 Sport|3|3|3|djuric|admin|
 forum|mnogo dobar|aaa|je l da|admin|admin|

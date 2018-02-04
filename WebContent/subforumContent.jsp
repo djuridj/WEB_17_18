@@ -10,9 +10,25 @@
 </head>
 <body>
 
-<a href="logedIndex.jsp">USER PAGE</a>
-<a href="subforums.jsp">SUBFORUMS</a>
+<ul>
+<li><a href="logedIndex.jsp">USER PAGE</a></li>
+<li><a href="subforums.jsp">SUBFORUMS</a></li>
+<li><a href="messages.jsp">MESSAGES</a></li>
+<li><a href="complaints.jsp">COMPLAINTS</a></li>
+<li><a href="search.jsp">SEARCH</a></li>
 
+<li>
+<c:if test="${user.role == 'Admin'}">
+	<a href="users.jsp">LIST USERS</a>
+</c:if>
+</li>
+
+<li style="float:right">
+<form action="Logout" method="post">
+ 	<input type="submit" value = "Logout">
+</form>
+</li>
+</ul>
 <p>Logged user: ${sessionScope.user.username}</p>
 <p>User role: ${sessionScope.user.role}</p>
 <p>Subforum: ${param.name}</p>
@@ -73,9 +89,7 @@
     			<input type="hidden" name="date" value="${top.value.date}"></input>
     			<input type="hidden" name="moderator" value="${param.moderator}"></input>
   			</form>
-  			</td>
-  			<td>
-			<form name="saveTopic" method="POST" action="SaveTopic">
+  			<form name="saveTopic" method="POST" action="SaveTopic">
     			<input type="submit" name="saveTopicButton" value="Save Topic"></input>
     			<input type="hidden" name="subforum" value="${top.value.subforum}"></input>
     			<input type="hidden" name="headline" value="${top.value.headline}"></input>
@@ -85,11 +99,10 @@
     			<input type="hidden" name="content" value="${top.value.content}"></input>
     			<input type="hidden" name="follower" value="${user.username}"></input>
   			</form>
-  			</td>
-  			<td>
+  			<c:if test="${user.username == top.value.author or user.username == param.moderator or user.role == 'Admin'}">
+			
 			<a href="./DeleteTopic?headline1=${top.value.headline}"><button>DELETE</button></a>
-  			</td>
-  			<td>
+  			
 			<form name="changeTopic" action="topicChange.jsp">
     			<input type="submit" name="changeTopicButton" value="Change Topic"></input>
     			<input type="hidden" name="subforum" value="${top.value.subforum}"></input>
@@ -101,8 +114,7 @@
     			<input type="hidden" name="likes" value="${top.value.likes}"></input>
     			<input type="hidden" name="dislikes" value="${top.value.dislikes}"></input>
   			</form>
-  			</td>
-  			<td>
+  			</c:if>
   			<form name="complainOnTopic" action="topicComplain.jsp">
     			<input type="submit" name="complainOnTopicButton" value="Complain"></input>
     			<input type="hidden" name="headline" value="${top.value.headline}"></input>
@@ -113,16 +125,11 @@
 		</c:if>
 	</c:forEach>
 </table>
-	
-<form name="newTopic" action="topicCreate.jsp">
-    			<input type="submit" name="newButton" value="New Topic"></input>
-    			<input type="hidden" name="name" value="${param.name}"></input>
-</form>
 
-<h2>New topic addition</h2>
 
 
 	<form name = "addTopic" method="POST" action="AddTopic">
+	<h2>New topic addition</h2>
 		<table title="Enter new topic data" align="center" >
 		
 		<tr>
@@ -134,7 +141,8 @@
 		</tr>
 		
 		<tr>
-		<td align="right">Content:	 </td><td>	<input type="text" name="content"></td>
+		<td align="right">Content:	 </td>
+		<td><textarea name="content" cols="21.75" rows="7"></textarea></td>
 		</tr>
 		
 		<tr>
