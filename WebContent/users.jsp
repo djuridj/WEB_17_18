@@ -41,7 +41,6 @@
 			<th width="20%">Last name</th>
 			<th width="20%">Email</th>
 			<th width="20%">Telephone</th>
-			<th width="20%">Role</th>
 			<th width="20%">Registration Date</th>	
 		</tr>
 	<c:forEach items="${allusers}" var="usr">
@@ -52,25 +51,23 @@
 			<td align="center">${usr.value.email}</td>
 			<td align="center">${usr.value.telephone}</td>
 			<td align="center">${usr.value.regDate}</td>
-			<td align="center">
-				<select name="role">
-							<option selected="selected">${usr.value.role}</option>
-							<c:if test="${usr.value.role == 'Admin'}">
-								<option value="${usr.value.role}">Moderator</option>
-								<option value="${usr.value.role}">User</option>
-							</c:if>
-							<c:if test="${usr.value.role == 'Moderator'}">
-								<option value="${usr.value.role}">Admin</option>
-								<option value="${usr.value.role}">User</option>
-							</c:if>
-							<c:if test="${usr.value.role == 'User'}">
-								<option value="${usr.value.role}">Admin</option>
-								<option value="${usr.value.role}">Moderator</option>
-							</c:if>
-				</select>
-			</td>
 			<td>
 			<form name="changeRole" method="POST" action="ChangeRole">
+    			<select name="role">
+    				<option selected="selected">${usr.value.role}</option>
+    				<c:if test="${usr.value.role == 'Admin'}">
+    					<option value="Moderator">Moderator</option>
+						<option value="User">User</option>
+    				</c:if>
+    				<c:if test="${usr.value.role == 'Moderator'}">
+    					<option value="Admin">Admin</option>
+						<option value="User">User</option>
+    				</c:if>
+    				<c:if test="${usr.value.role == 'User'}">
+    					<option value="Admin">Admin</option>
+						<option value="Moderator">Moderator</option>
+    				</c:if>
+				</select>
     			<input type="submit" name="changeRoleButton" value="Change Role"></input>
     			<input type="hidden" name="username" value="${usr.value.username}"></input>
     			<input type="hidden" name="password" value="${usr.value.password}"></input>
@@ -79,7 +76,6 @@
     			<input type="hidden" name="telephone" value="${usr.value.telephone}"></input>
     			<input type="hidden" name="email" value="${usr.value.email}"></input>
     			<input type="hidden" name="regDate" value="${usr.value.regDate}"></input>
-    			<input type="hidden" name="role" value="${usr.value.role}"></input>
   			</form>
 			</td>
 		</tr>

@@ -62,7 +62,7 @@ public class AddMessage extends HttpServlet {
 		mes.put(content, m);
 		
 		session.setAttribute("message",mes);
-		RequestDispatcher rd = request.getRequestDispatcher("logedIndex.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("messages.jsp");
 		rd.forward(request, response);
 		s.addMessage(m, path);
 	}

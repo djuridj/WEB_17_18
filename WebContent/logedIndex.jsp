@@ -45,7 +45,8 @@
 			<th width="20%">Mod</th>			
 		</tr>
 		<c:forEach items="${followedsubforum}" var="fforum">
-		<c:if test="${ user.username == fforum.value.followe}">
+		<c:forEach items="${subforum}" var="forum">
+		<c:if test="${ user.username == fforum.value.followe && fforum.value.name == forum.value.name}">
 		<tr>
 			<td align="center">${fforum.value.name}</td>
 			<td align="center">${fforum.value.description}</td>
@@ -67,6 +68,7 @@
 			</td>
 		</tr>
 		</c:if>
+		</c:forEach>
 </c:forEach>
 </table>
 

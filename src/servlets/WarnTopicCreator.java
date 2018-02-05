@@ -78,7 +78,7 @@ public class WarnTopicCreator extends HttpServlet {
 		
 		session.setAttribute("topiccomplaint", tc);
 		
-		response.sendRedirect("logedIndex.jsp");
+		response.sendRedirect("complaints.jsp");
 
 	}
 

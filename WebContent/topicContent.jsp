@@ -72,6 +72,7 @@
 <c:when test="${com.value.parent == 0}">
 <table border="1">
 		<tr bgcolor="lightgrey">
+			<th width="5%"></th>
 			<th width="20%">Positives</th>
 			<th width="20%">Negatives</th>
 			<th width="20%">Topic</th>
@@ -82,6 +83,33 @@
 			<th width="20%">Changed</th>		
 		</tr>	
 		<tr>
+			<td>
+			<form action="LikeComment" method="post" name="likeComment">
+				<input type="submit" name="likeCommentButton" value="+"></input>
+				<input type="hidden" name="id" value="${com.value.id}"></input>
+    			<input type="hidden" name="topic" value="${com.value.topic}"></input>
+    			<input type="hidden" name="author" value="${com.value.author}"></input>
+    			<input type="hidden" name="text" value="${com.value.text}"></input>
+    			<input type="hidden" name="date" value="${com.value.date}"></input>
+    			<input type="hidden" name="parent" value="${com.value.parent}"></input>
+    			<input type="hidden" name=positives value="${com.value.positives}"></input>
+    			<input type="hidden" name=negatives value="${com.value.negatives}"></input>
+    			<input type="hidden" name=changed value="${com.value.changed}"></input>
+			</form>
+			<form action="DislikeComment" method="post" name="dislikeComment">
+				<input type="submit" name="dislikeCommentButton" value="-"></input>
+				<input type="hidden" name="id" value="${com.value.id}"></input>
+    			<input type="hidden" name="topic" value="${com.value.topic}"></input>
+    			<input type="hidden" name="author" value="${com.value.author}"></input>
+    			<input type="hidden" name="text" value="${com.value.text}"></input>
+    			<input type="hidden" name="date" value="${com.value.date}"></input>
+    			<input type="hidden" name="parent" value="${com.value.parent}"></input>
+    			<input type="hidden" name=positives value="${com.value.positives}"></input>
+    			<input type="hidden" name=negatives value="${com.value.negatives}"></input>
+    			<input type="hidden" name=changed value="${com.value.changed}"></input>
+    		</form>	
+    		</td>
+    			
 			<td align="center">${com.value.positives}</td>
 			<td align="center">${com.value.negatives}</td>
 			<td align="center">${com.value.topic}</td>

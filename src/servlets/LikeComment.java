@@ -14,44 +14,45 @@ import javax.servlet.http.HttpSession;
 import beans.Comment;
 
 /**
- * Servlet implementation class DeleteComment
+ * Servlet implementation class LikeComment
  */
-@WebServlet("/DeleteComment")
-public class DeleteComment extends HttpServlet {
+@WebServlet("/LikeComment")
+public class LikeComment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteComment() {
+    public LikeComment() {
         super();
         // TODO Auto-generated constructor stub
     }
     
     String path = servlets.Registration.path;
-
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+HttpSession session = request.getSession();
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		String topic = request.getParameter("topic");
-		String author = "deleted";
+		String author = request.getParameter("author");
 		String date = request.getParameter("date");
 		int parent = Integer.parseInt(request.getParameter("parent"));
-		String text = "deleted";
-		int positives = Integer.parseInt(request.getParameter("positives"));
+		String text = request.getParameter("text");
+		int c = Integer.parseInt(request.getParameter("positives"))+1;
+		int positives = c;
 		int negatives = Integer.parseInt(request.getParameter("negatives"));
-		Boolean changed = true;
+		Boolean changed = false;
 		
 		Comment co = new Comment(id, topic, author, date, parent, text, positives, negatives,changed);
 		
@@ -77,6 +78,7 @@ public class DeleteComment extends HttpServlet {
 		session.setAttribute("comment", com);
 		
 		response.sendRedirect("subforums.jsp");
+
 	}
 
 }

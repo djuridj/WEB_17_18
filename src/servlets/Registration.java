@@ -43,18 +43,11 @@ public class Registration extends HttpServlet {
 		Date today = Calendar.getInstance().getTime();        
 		String regDate = df.format(today);
 		String role = Role.User.name();
-	
-		//HttpSession session = request.getSession();
 		
 		Serialization s = new Serialization();
 		
 		User u = new User(username, password, firstname, lastname, telephone, email, regDate, role);
-		
-		//@SuppressWarnings("unchecked")
-		//Hashtable<String, User> usr = (Hashtable<String, User>) session.getAttribute("allusers");
-		
-		//usr.put(username, u);
-		//session.setAttribute("allusers", usr);
+
 		
 		RequestDispatcher rd = request.getRequestDispatcher("Index.jsp");
 		rd.forward(request, response);

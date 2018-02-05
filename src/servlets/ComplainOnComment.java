@@ -68,7 +68,7 @@ public class ComplainOnComment extends HttpServlet {
 		
 		comc.put(text, cmc);
 		session.setAttribute("commentcomplaint", comc);
-		RequestDispatcher rd = request.getRequestDispatcher("subforums.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("complaints.jsp");
 		rd.forward(request, response);
 		s.addCommentComplaint(cmc, path);
 	}

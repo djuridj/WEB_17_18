@@ -77,7 +77,7 @@ public class RefuseSubforumComplaint extends HttpServlet {
 		
 		session.setAttribute("subforumcomplaint", sc);
 		
-		response.sendRedirect("logedIndex.jsp");
+		response.sendRedirect("complaints.jsp");
 	}
 
 }

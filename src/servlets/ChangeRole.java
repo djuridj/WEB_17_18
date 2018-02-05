@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import beans.User;
 
@@ -42,7 +41,7 @@ public class ChangeRole extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		//HttpSession session = request.getSession();
 		
 		
 		String username = request.getParameter("username");
@@ -74,11 +73,11 @@ public class ChangeRole extends HttpServlet {
 		s.deleteUser(idBrisanje, path);
 		usr.remove(idBrisanje);
 		
-		s.addUser(u, path);
+		
 		usr.put(idBrisanje, u);
+		s.addUser(u, path);
 		
-		session.setAttribute("user", u);
-		
+		//session.setAttribute("allusers", u);
 		response.sendRedirect("users.jsp");
 	}
 

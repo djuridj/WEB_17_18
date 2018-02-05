@@ -68,7 +68,7 @@ public class ComplainOnSubforum extends HttpServlet {
 		
 		subc.put(text, sfc);
 		session.setAttribute("subforumcomplaint", subc);
-		RequestDispatcher rd = request.getRequestDispatcher("subforums.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("complaints.jsp");
 		rd.forward(request, response);
 		s.addSubforumComplaint(sfc, path);
 	}

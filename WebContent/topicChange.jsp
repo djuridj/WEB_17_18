@@ -32,30 +32,42 @@
 
 <h2>Update topic:</h2>	
 <form  action="UpdateTopic" method="post">
-	<p>Subforum</p>
-	<p>${param.subforum}</p>
-	
-	<p>Headline</p>
-	<p>${param.headline}</p>
-	
-	<p>Type</p>
-	<p>${param.type}</p>
-	
-	<p>Author</p>
-	<p>${param.author}</p>
-	
-	<p>Date</p>
-	<p>${param.date}</p>
-	
 	
 	<table title="Enter updated topic data" align="center" >
-	<tr>
-		<td>Content</td> <td><input	type="text" name="content" value="${param.content}"></td>
-	</tr>
-
-	<tr>
-		<td><input type="submit" value="Update"></td>
-	</tr>
+		<tr>
+		<td>Subforum: </td>
+		<td>${param.subforum}</td>
+		</tr>
+		
+		<tr>
+		<td>Headline: </td>
+		<td>${param.headline}</td>
+		</tr>
+		
+		<tr>
+		<td>Type: </td>
+		<td>${param.type}</td>
+		</tr>
+		
+		<tr>
+		<td>Author: </td>
+		<td>${param.author}</td>
+		</tr>
+		
+		<tr>
+		<td>Date: </td>
+		<td>${param.date}</td>
+		</tr>
+		
+		<tr>
+			<td>Content</td>
+			<td><textarea name="content" cols="21.75" rows="7">${param.content}</textarea></td>
+		</tr>
+		
+		<tr>
+			<td><input type="submit" value="Update"></td>
+		</tr>
+		
 	</table>
 	
 	<input type="hidden" name="subforum" value="${param.subforum}"></input>

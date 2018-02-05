@@ -62,6 +62,9 @@
 <h3>Topics of this subforum</h3>
 <table border="1">
 		<tr bgcolor="lightgrey">
+			<th width="20%"></th>
+			<th width="20%">Likes</th>
+			<th width="20%">Dislikes</th>
 			<th width="20%">Subforum</th>
 			<th width="20%">Headline</th>
 			<th width="20%">Type</th>
@@ -72,6 +75,32 @@
 	<c:forEach items="${topic}" var="top">
 	<c:if test="${ param.name == top.value.subforum ||  subforum.name == top.value.subforum}">
 		<tr>
+			<td>
+			<form name="likeTopic" action="LikeTopic" method="post">
+    			<input type="submit" name="likeButton" value="+"></input>
+    			<input type="hidden" name="subforum" value="${top.value.subforum}"></input>
+    			<input type="hidden" name="headline" value="${top.value.headline}"></input>
+    			<input type="hidden" name="type" value="${top.value.type}"></input>
+    			<input type="hidden" name="author" value="${top.value.author}"></input>
+    			<input type="hidden" name="content" value="${top.value.content}"></input>
+    			<input type="hidden" name="date" value="${top.value.date}"></input>
+    			<input type="hidden" name="likes" value="${top.value.likes}"></input>
+    			<input type="hidden" name="dislikes" value="${top.value.dislikes}"></input>
+  			</form>
+  			<form name="dislikeTopic" action="DislikeTopic" method="post">
+    			<input type="submit" name="dislikeButton" value="-"></input>
+    			<input type="hidden" name="subforum" value="${top.value.subforum}"></input>
+    			<input type="hidden" name="headline" value="${top.value.headline}"></input>
+    			<input type="hidden" name="type" value="${top.value.type}"></input>
+    			<input type="hidden" name="author" value="${top.value.author}"></input>
+    			<input type="hidden" name="content" value="${top.value.content}"></input>
+    			<input type="hidden" name="date" value="${top.value.date}"></input>
+    			<input type="hidden" name="likes" value="${top.value.likes}"></input>
+    			<input type="hidden" name="dislikes" value="${top.value.dislikes}"></input>
+  			</form>
+			</td>
+			<td align="center">${top.value.likes}</td>
+			<td align="center">${top.value.dislikes}</td>
 			<td align="center">${top.value.subforum}</td>
 			<td align="center">${top.value.headline}</td>
 			<td align="center">${top.value.type}</td>

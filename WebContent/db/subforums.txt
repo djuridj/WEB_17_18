@@ -1,1 +1,2 @@
-Sport|3|3|3|djuric|
+
+Sport|3|3|3 mnogo pravila|admin|

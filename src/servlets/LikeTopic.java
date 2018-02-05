@@ -11,30 +11,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.Comment;
+import beans.Topic;
 
 /**
- * Servlet implementation class DeleteComment
+ * Servlet implementation class LikeTopic
  */
-@WebServlet("/DeleteComment")
-public class DeleteComment extends HttpServlet {
+@WebServlet("/LikeTopic")
+public class LikeTopic extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteComment() {
+    public LikeTopic() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-    String path = servlets.Registration.path;
 
+    String path = servlets.Registration.path;
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -42,41 +43,42 @@ public class DeleteComment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
-		int id = Integer.parseInt(request.getParameter("id"));
-		String topic = request.getParameter("topic");
-		String author = "deleted";
+
+		String subforum = request.getParameter("subforum");
+		String headline = request.getParameter("headline");
+		String type = request.getParameter("type");
+		String author = request.getParameter("author");
 		String date = request.getParameter("date");
-		int parent = Integer.parseInt(request.getParameter("parent"));
-		String text = "deleted";
-		int positives = Integer.parseInt(request.getParameter("positives"));
-		int negatives = Integer.parseInt(request.getParameter("negatives"));
-		Boolean changed = true;
+		String content = request.getParameter("content");
+		int likes = Integer.parseInt(request.getParameter("likes"))+1;
+		int dislikes = Integer.parseInt(request.getParameter("dislikes"));
 		
-		Comment co = new Comment(id, topic, author, date, parent, text, positives, negatives,changed);
+		Topic to = new Topic(subforum, headline, type, author, date, content, likes, dislikes);
 		
 		Serialization s = new Serialization();
-
-		Hashtable<Integer, Comment> com = s.listComments(path);
 		
-		int idBrisanje = 0;
 		
-		Set<Integer> keys = com.keySet();
-		for (Integer kor : keys) {
-			if (kor.equals(co.getId())) {
+		Hashtable<String, Topic> top = s.listTopics(path);
+		
+		String idBrisanje = "";
+		
+		Set<String> keys = top.keySet();
+		for (String kor : keys) {
+			if (kor.equals(to.getHeadline())) {
 				idBrisanje = kor;	
 			}
 		}
 		
-		s.deleteComment(idBrisanje, path);
-		com.remove(idBrisanje);
+		s.deleteTopic(idBrisanje, path);
+		top.remove(idBrisanje);
 		
-		s.addComment(co, path);
-		com.put(idBrisanje, co);
+		s.addTopic(to, path);
+		top.put(idBrisanje, to);
 		
-		session.setAttribute("comment", com);
+		session.setAttribute("topic", top);
 		
 		response.sendRedirect("subforums.jsp");
+
 	}
 
 }

@@ -78,7 +78,7 @@ HttpSession session = request.getSession();
 		
 		session.setAttribute("commentcomplaint", cc);
 		
-		response.sendRedirect("logedIndex.jsp");
+		response.sendRedirect("complaints.jsp");
 
 	}
 

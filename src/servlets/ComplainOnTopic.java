@@ -69,7 +69,7 @@ public class ComplainOnTopic extends HttpServlet {
 		
 		topc.put(text, tpc);
 		session.setAttribute("topiccomplaint", topc);
-		RequestDispatcher rd = request.getRequestDispatcher("subforums.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("complaints.jsp");
 		rd.forward(request, response);
 		s.addTopicComplaint(tpc, path);
 	}

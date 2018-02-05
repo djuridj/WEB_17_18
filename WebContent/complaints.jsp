@@ -55,8 +55,8 @@
 			<td align="center">${sfc.value.text}</td>
 			<td align="center">${sfc.value.status}</td>
 			<td align="center">${sfc.value.warning}</td>
-			<c:if test="${ sfc.value.status != 'Complaint refused' }">
 			<td>
+			<c:if test="${ sfc.value.status != 'Complaint refused' }">
 			<form name="refuseComplaint" method="post" action="RefuseSubforumComplaint">
     			<input type="submit" name="reply" value="Refuse"></input>
     			<input type="hidden" name="author" value="${sfc.value.author}"></input>
@@ -65,10 +65,9 @@
     			<input type="hidden" name="text" value="${sfc.value.text}"></input>
     			<input type="hidden" name="warning" value="${sfc.value.warning}"></input>
   			</form>
-  			</td>
   			</c:if>
+  			
   			<c:if test="${ sfc.value.warning != 'Subforum author is warned'}">
-  			<td>
 			<form name="warnMaker" method="post" action="WarnSubforumCreator">
     			<input type="submit" name="reply" value="Warning"></input>
     			<input type="hidden" name="author" value="${sfc.value.author}"></input>
@@ -77,8 +76,8 @@
     			<input type="hidden" name="text" value="${sfc.value.text}"></input>
     			<input type="hidden" name="status" value="${sfc.value.status}"></input>
   			</form>
-  			</td>
   			</c:if>
+  			</td>
 		</tr>
 	</c:forEach>
 </table>
@@ -105,8 +104,9 @@
 			<td align="center">${tpc.value.text}</td>
 			<td align="center">${tpc.value.status}</td>
 			<td align="center">${tpc.value.warning}</td>
-			<c:if test="${ tpc.value.status != 'Complaint refused' }">
 			<td>
+			<c:if test="${ tpc.value.status != 'Complaint refused' }">
+			
 			<form name="refuseComplaint" method="post" action="RefuseTopicComplaint">
     			<input type="submit" name="reply" value="Refuse"></input>
     			<input type="hidden" name="author" value="${tpc.value.author}"></input>
@@ -116,10 +116,8 @@
     			<input type="hidden" name="text" value="${tpc.value.text}"></input>
     			<input type="hidden" name="warning" value="${tpc.value.warning}"></input>
   			</form>
-  			</td>
   			</c:if>
   			<c:if test="${ tpc.value.warning != 'Topic author is warned'}">
-  			<td>
 			<form name="warnMaker" method="post" action="WarnTopicCreator">
     			<input type="submit" name="reply" value="Warning"></input>
     			<input type="hidden" name="author" value="${tpc.value.author}"></input>
@@ -129,8 +127,9 @@
     			<input type="hidden" name="text" value="${tpc.value.text}"></input>
     			<input type="hidden" name="status" value="${tpc.value.status}"></input>
   			</form>
-  			</td>
+  			
   			</c:if>
+  			</td>
 		</tr>
 	</c:if>
 	</c:forEach>
@@ -157,8 +156,9 @@
 			<td align="center">${cmc.value.text}</td>
 			<td align="center">${cmc.value.status}</td>
 			<td align="center">${cmc.value.warning}</td>
-			<c:if test="${ cmc.value.status != 'Complaint refused' }">
 			<td>
+			<c:if test="${ cmc.value.status != 'Complaint refused' }">
+			
 			<form name="refuseComplaint" method="post" action="RefuseCommentComplaint">
     			<input type="submit" name="reply" value="Refuse"></input>
     			<input type="hidden" name="author" value="${cmc.value.author}"></input>
@@ -168,10 +168,10 @@
     			<input type="hidden" name="text" value="${cmc.value.text}"></input>
     			<input type="hidden" name="warning" value="${cmc.value.warning}"></input>
   			</form>
-  			</td>
+  			
   			</c:if>
   			<c:if test="${ cmc.value.warning != 'Comment author is warned'}">
-  			<td>
+  			
 			<form name="warnMaker" method="post" action="WarnCommentCreator">
     			<input type="submit" name="reply" value="Warning"></input>
     			<input type="hidden" name="author" value="${cmc.value.author}"></input>
@@ -181,8 +181,9 @@
     			<input type="hidden" name="text" value="${cmc.value.text}"></input>
     			<input type="hidden" name="status" value="${cmc.value.status}"></input>
   			</form>
-  			</td>
+  			
   			</c:if>
+  			</td>
 		</tr>
 	</c:if>
 	</c:forEach>

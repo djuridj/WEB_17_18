@@ -77,7 +77,7 @@ public class WarnCommentCreator extends HttpServlet {
 		
 		session.setAttribute("commentcomplaint", cc);
 		
-		response.sendRedirect("logedIndex.jsp");
+		response.sendRedirect("complaints.jsp");
 	}
 
 }

@@ -36,7 +36,7 @@
 		<table title="Enter new complaint" align="center" >
 		
 		<tr>
-		<td align="right">Text:  </td><td><input	type="text" name="text" style="height:200px"></td>
+		<td align="right">Text:  </td><td><textarea name="text" cols="40" rows="5"></textarea></td>
 		</tr>
 		 
 		 <tr>
