@@ -34,8 +34,8 @@ public class DeleteSubforum extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String path = servlets.Registration.path;
-		
+		//String path = servlets.Registration.path;
+		String path = getServletContext().getRealPath("");
 		@SuppressWarnings("unchecked")
 		Hashtable<String, Subforum> subs = (Hashtable<String, Subforum>) session.getAttribute("subforum");
 		

@@ -24,7 +24,7 @@ public class Registration extends HttpServlet {
         super();
 	} 
 	
-	public static String path = "C:/Users/DIOLE/workspace helios/WEB_17_18/WebContent/db/";
+
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -32,7 +32,8 @@ public class Registration extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String path = getServletContext().getRealPath("");
+		System.out.println(path);
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String firstname = request.getParameter("firstname");

@@ -43,7 +43,8 @@ public class SearchSubforum extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = servlets.Registration.path;
+		String path = getServletContext().getRealPath("");
+		//String path = servlets.Registration.path;
 		HttpSession session = request.getSession();
 		Serialization s = new Serialization();
 		Hashtable<String, Subforum> sub1 = s.listSubforums(path);

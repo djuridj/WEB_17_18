@@ -43,7 +43,8 @@ public class SearchTopic extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = servlets.Registration.path;
+		//String path = servlets.Registration.path;
+		String path = getServletContext().getRealPath("");
 		HttpSession session = request.getSession();
 		Serialization s = new Serialization();
 		Hashtable<String, Topic> top1 = s.listTopics(path);

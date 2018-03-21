@@ -42,7 +42,8 @@ public class Refresh extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path = servlets.Registration.path;
+		//String path = servlets.Registration.path;
+		String path = getServletContext().getRealPath("");
 		Serialization s = new Serialization();
 		
 		Hashtable<String, Subforum> sf = s.listSubforums(path);

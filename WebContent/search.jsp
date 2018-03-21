@@ -91,12 +91,21 @@
 			<td align="center">${forum.value.description}</td>
 			<c:choose>
 				<c:when test="${forum.value.name == 'Sport' }">
-					<td align="center"><img src="img/foot.png" width = "100" height = "100"></img></td>
+					<td align="center"><img src="img/sports.png" width = "100" height = "100"></img></td>
+				</c:when>
+				<c:when test="${forum.value.name == 'Books' }">
+					<td align="center"><img src="img/books.png" width = "100" height = "100"></img></td>
+				</c:when>
+				<c:when test="${forum.value.name == 'Music' }">
+					<td align="center"><img src="img/music.png" width = "100" height = "100"></img></td>
+				</c:when>
+				<c:when test="${forum.value.name == 'Movies' }">
+					<td align="center"><img src="img/movies.png" width = "100" height = "100"></img></td>
 				</c:when>
 				<c:otherwise>
 					<td align="center">${forum.value.icon}</td>
 				</c:otherwise>
-			</c:choose>	
+			</c:choose>
 			<td align="center">${forum.value.rules}</td>
 			<td align="center">${forum.value.moderator}</td>
 			<td>

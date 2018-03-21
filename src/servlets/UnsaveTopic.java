@@ -33,8 +33,8 @@ public class UnsaveTopic extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String path = servlets.Registration.path;
-		
+		//String path = servlets.Registration.path;
+		String path = getServletContext().getRealPath("");
 		@SuppressWarnings("unchecked")
 		Hashtable<String, SavedTopic> stopics = (Hashtable<String, SavedTopic>) session.getAttribute("savedtopic");
 		

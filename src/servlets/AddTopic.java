@@ -25,7 +25,7 @@ import beans.User;
 public class AddTopic extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	String path = servlets.Registration.path;
+	//String path = servlets.Registration.path;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -47,6 +47,7 @@ public class AddTopic extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String path = getServletContext().getRealPath("");
 		String subforum = request.getParameter("subforum");
 		String headline = request.getParameter("headline");
 		String type = request.getParameter("type");

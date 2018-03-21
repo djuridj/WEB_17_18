@@ -38,9 +38,9 @@
 <h3>All followed subforums</h3>
 <table border="1">
 		<tr>
+			<th width="20%">Icon</th>
 			<th width="20%">Name</th>
 			<th width="20%">Description</th>
-			<th width="20%">Icon</th>
 			<th width="20%">Rules</th>
 			<th width="20%">Mod</th>			
 		</tr>
@@ -48,9 +48,25 @@
 		<c:forEach items="${subforum}" var="forum">
 		<c:if test="${ user.username == fforum.value.followe && fforum.value.name == forum.value.name}">
 		<tr>
+			<c:choose>
+				<c:when test="${forum.value.name == 'Sport' }">
+					<td align="center"><img src="img/sports.png" width = "100" height = "100"></img></td>
+				</c:when>
+				<c:when test="${forum.value.name == 'Books' }">
+					<td align="center"><img src="img/books.png" width = "100" height = "100"></img></td>
+				</c:when>
+				<c:when test="${forum.value.name == 'Music' }">
+					<td align="center"><img src="img/music.png" width = "100" height = "100"></img></td>
+				</c:when>
+				<c:when test="${forum.value.name == 'Movies' }">
+					<td align="center"><img src="img/movies.png" width = "100" height = "100"></img></td>
+				</c:when>
+				<c:otherwise>
+					<td align="center">${forum.value.icon}</td>
+				</c:otherwise>
+			</c:choose>
 			<td align="center">${fforum.value.name}</td>
 			<td align="center">${fforum.value.description}</td>
-			<td align="center">${fforum.value.icon}</td>
 			<td align="center">${fforum.value.rules}</td>
 			<td align="center">${fforum.value.moderator}</td>
 			<td>

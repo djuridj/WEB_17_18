@@ -27,7 +27,7 @@ public class DislikeTopic extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-String path = servlets.Registration.path;
+    //String path = servlets.Registration.path;
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,7 +42,7 @@ String path = servlets.Registration.path;
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-
+		String path = getServletContext().getRealPath("");
 		String subforum = request.getParameter("subforum");
 		String headline = request.getParameter("headline");
 		String type = request.getParameter("type");

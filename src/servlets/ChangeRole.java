@@ -27,7 +27,7 @@ public class ChangeRole extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
-    String path = servlets.Registration.path;
+    //String path = servlets.Registration.path;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,7 +42,7 @@ public class ChangeRole extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//HttpSession session = request.getSession();
-		
+		String path = getServletContext().getRealPath("");
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");

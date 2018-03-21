@@ -28,7 +28,7 @@ public class MarkAsRed extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    String path = servlets.Registration.path;
+    //String path = servlets.Registration.path;
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,6 +42,7 @@ public class MarkAsRed extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String path = getServletContext().getRealPath("");
 		HttpSession session = request.getSession();
 		int id = Integer.parseInt(request.getParameter("id"));
 		String sender = request.getParameter("sender");

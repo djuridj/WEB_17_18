@@ -29,7 +29,7 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 	
-	String path = servlets.Registration.path;
+	//String path = servlets.Registration.path;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -47,6 +47,7 @@ public class Login extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String path = getServletContext().getRealPath("");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		@SuppressWarnings("unused")

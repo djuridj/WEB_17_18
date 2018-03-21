@@ -28,7 +28,7 @@ public class DislikeComment extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    String path = servlets.Registration.path;
+    //String path = servlets.Registration.path;
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -43,7 +43,7 @@ public class DislikeComment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
+		String path = getServletContext().getRealPath("");
 		int id = Integer.parseInt(request.getParameter("id"));
 		String topic = request.getParameter("topic");
 		String author = request.getParameter("author");

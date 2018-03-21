@@ -34,7 +34,7 @@ public class AddComment extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
-    String path = servlets.Registration.path;
+    //String path = servlets.Registration.path;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,6 +48,7 @@ public class AddComment extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String path = getServletContext().getRealPath("");
 		Random rand = new Random();
 		int  id = rand.nextInt(2000) + 1;
 		String topic = request.getParameter("topic");

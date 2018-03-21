@@ -28,7 +28,7 @@ public class RefuseCommentComplaint extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    String path = servlets.Registration.path;
+    //String path = servlets.Registration.path;
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -43,7 +43,7 @@ public class RefuseCommentComplaint extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 HttpSession session = request.getSession();
-		
+String path = getServletContext().getRealPath("");
 		String text = request.getParameter("text");  
 		String date = request.getParameter("date");
 		int comment = Integer.parseInt(request.getParameter("comment"));

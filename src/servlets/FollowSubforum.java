@@ -23,7 +23,7 @@ public class FollowSubforum extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    String path = servlets.Registration.path;
+   //String path = servlets.Registration.path;
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,6 +36,7 @@ public class FollowSubforum extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String path = getServletContext().getRealPath("");
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
 		String icon = request.getParameter("icon");

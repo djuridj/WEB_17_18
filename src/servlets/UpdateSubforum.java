@@ -29,7 +29,7 @@ public class UpdateSubforum extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    String path = servlets.Registration.path;
+    //String path = servlets.Registration.path;
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -43,7 +43,7 @@ public class UpdateSubforum extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-				
+		String path = getServletContext().getRealPath("");	
 		//Subforum subforum = (Subforum)session.getAttribute("changesubforum"); 
 		
 		String name = request.getParameter("name");
